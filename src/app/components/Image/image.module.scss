@@ -1,0 +1,17 @@
+.image__wrapper {
+  position: relative;
+  width: 100%;
+  height: min-content;
+  overflow: hidden;
+
+  &.inMasonry {
+    // for using the '@fristys/masonry' package
+    // height: inherit;
+  }
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}

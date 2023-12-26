@@ -1,0 +1,30 @@
+// import { Masonry } from '@fristys/masonry'
+
+$mediaGridGap: 0.5;
+$mediaGridGapUnit: rem;
+$mediaGridGapFull: #{$mediaGridGap}#{$mediaGridGapUnit};
+
+:export {
+  mediaGridGap: $mediaGridGap;
+  mediaGridGapUnit: $mediaGridGapUnit;
+}
+.masonryGrid {
+  display: grid;
+  grid-gap: var(--media-grid-gap);
+  width: 100%;
+  transition: opacity 0.25s;
+  opacity: 0;
+
+  &.masonryLoaded {
+    opacity: 1;
+  }
+
+  &__wrapper {
+    --padding-left: calc((100vw - var(--max-content-width)) / 2);
+
+    max-width: calc(
+      var(--max-content-width) + var(--padding-left) + var(--media-grid-gap)
+    );
+    padding-left: var(--padding-left);
+  }
+}

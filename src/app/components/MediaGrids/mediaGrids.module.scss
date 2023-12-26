@@ -1,0 +1,62 @@
+@import '../../styles/variables';
+
+.img_grid {
+  display: grid;
+  grid-gap: var(--media-grid-gap);
+  width: 100%;
+
+  img {
+    display: block;
+  }
+
+  & + .img_grid {
+    margin-top: var(--media-grid-gap);
+  }
+
+  div:nth-child(1) {
+    grid-area: one;
+  }
+
+  div:nth-child(2) {
+    grid-area: two;
+  }
+
+  div:nth-child(3) {
+    grid-area: three;
+  }
+}
+
+.two_by_one {
+  grid-template-areas:
+    'one'
+    'two';
+
+  @media only screen and (min-width: $small-medium) {
+    grid-template-areas: 'one two';
+
+    &.portrait_x_landscape {
+      grid-template-columns: 2.5fr 6.4fr;
+    }
+
+    &.landscape_x_portrait {
+      grid-template-columns: 6.4fr 2.5fr;
+    }
+  }
+}
+
+.three_by_one {
+  grid-template-areas:
+    'one'
+    'two'
+    'three';
+
+  @media only screen and (min-width: $medium) {
+    grid-template-areas:
+      'one two'
+      'three three';
+  }
+
+  @media only screen and (min-width: $large) {
+    grid-template-areas: 'one two three';
+  }
+}

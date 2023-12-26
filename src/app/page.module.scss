@@ -1,0 +1,16 @@
+@import './styles/mixins';
+
+.main {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 0;
+}
+
+.content_wrapper {
+  @include container();
+
+  & > & {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}

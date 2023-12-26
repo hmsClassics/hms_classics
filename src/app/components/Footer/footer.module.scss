@@ -1,0 +1,11 @@
+@import '../../styles/mixins';
+
+.footer {
+  background-color: lightgray;
+}
+
+.footer__content {
+  display: flex;
+  flex-direction: column;
+  @include container();
+}

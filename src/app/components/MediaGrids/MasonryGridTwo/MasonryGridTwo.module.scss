@@ -1,0 +1,18 @@
+$columns_small: 1;
+$columns_medium: 2;
+$columns_large: 3;
+
+:export {
+  newMediaGridGap: var(--media-grid-gap);
+}
+
+.masonryGrid {
+  &__wrapper {
+    width: 100%;
+    max-width: var(--max-content-width);
+    margin: 0 auto var(--content-section-gap);
+  }
+
+  img {
+  }
+}

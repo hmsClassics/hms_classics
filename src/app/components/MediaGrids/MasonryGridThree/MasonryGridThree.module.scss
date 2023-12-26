@@ -1,0 +1,46 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.masonryGrid {
+  @include container();
+  max-width: calc(var(--max-content-width) + var(--gutter));
+
+  &__wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    gap: var(--gutter);
+    width: 100%;
+
+    img {
+      height: 100%;
+    }
+
+    > div {
+      flex: auto;
+      height: inherit;
+      min-width: 150px;
+      overflow: hidden;
+      border-radius: var(--border-radius);
+      background-color: #cecece;
+      position: relative;
+      margin: 0;
+
+      @media only screen and (min-width: $medium) {
+        height: 450px;
+
+        &:nth-child(4n + 1) {
+          width: 25%;
+        }
+        &:nth-child(4n + 2) {
+          width: 38%;
+        }
+        &:nth-child(4n + 3) {
+          width: 47%;
+        }
+        &:nth-child(4n + 4) {
+          width: 55%;
+        }
+      }
+    }
+  }
+}
