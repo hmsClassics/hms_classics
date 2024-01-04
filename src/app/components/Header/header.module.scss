@@ -28,7 +28,12 @@
   }
 
   @media only screen and (min-width: $medium) {
-    margin: 0;
-    margin-left: var(--content-padding);
+    margin: 0 0 0 var(--content-padding);
+    padding: var(--content-padding) 0;
+    width: calc(100% - (var(--content-padding) * 2));
+  }
+
+  @media only screen and (min-width: $x-large) {
+    max-width: calc(var(--max-content-width) - (var(--content-padding) * 2));
   }
 }

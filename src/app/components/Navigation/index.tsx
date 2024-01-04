@@ -15,15 +15,15 @@ const PrimaryNav = () => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           xmlSpace="preserve"
-          className={styles.menu_icon}
+          className={styles.nav__menu_icon}
           viewBox="0 0 32 32">
-          <path d="M16 4h16" className={styles.menu_icon__top} />
-          <path d="M6 16h26" className={styles.menu_icon__middle} />
-          <path d="M0 28h32" className={styles.menu_icon__bottom} />
+          <path d="M16 4h16" className={styles.nav__menu_icon__top} />
+          <path d="M6 16h26" className={styles.nav__menu_icon__middle} />
+          <path d="M0 28h32" className={styles.nav__menu_icon__bottom} />
         </svg>
 
         <svg
-          className={styles.close_icon}
+          className={styles.nav__close_icon}
           xmlns="http://www.w3.org/2000/svg"
           xmlSpace="preserve"
           id="Layer_1"
@@ -33,9 +33,12 @@ const PrimaryNav = () => {
           viewBox="0 0 32 32">
           <path
             d="M29 29 3 3M29 3 3 29"
-            className={styles.close_icon__main_line}
+            className={styles.nav__close_icon__main_line}
           />
-          <path d="M31 5 5 31" className={styles.close_icon__secondary_line} />
+          <path
+            d="M31 5 5 31"
+            className={styles.nav__close_icon__secondary_line}
+          />
         </svg>
       </label>
       <ul className={styles.nav__menu}>
@@ -52,7 +55,7 @@ const PrimaryNav = () => {
 
 const FooterNav = () => {
   return (
-    <nav className={cx(styles.nav_list, styles.nav__footer)}>
+    <nav className={cx(styles.nav, styles.nav__footer)}>
       <ul>
         <li>
           <Link href="/contact">Contact Us</Link>

@@ -1,7 +1,8 @@
 @import '../../styles/mixins';
 
 .footer {
-  background-color: lightgray;
+  @include gradient-dark();
+  color: var(--color-white);
 }
 
 .footer__content {
