@@ -1,10 +1,16 @@
+import cx from 'classnames'
+
 import type { Metadata } from 'next'
-import { Heebo } from 'next/font/google'
+import { Jost, Montserrat } from 'next/font/google'
 import './globals.scss'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
-const heebo = Heebo({ subsets: ['latin'] })
+const jost = Jost({ subsets: ['latin'], variable: '--font-jost' })
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+})
 
 export const metadata: Metadata = {
   title: 'HSM Classics',
@@ -39,7 +45,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={heebo.className}>
+      <body className={cx(jost.variable, montserrat.variable)}>
         <Header />
         {children}
         <Footer />

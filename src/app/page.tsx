@@ -16,8 +16,7 @@ export default function Home() {
           connect you with the timeless elegance of meticulously restored
           vehicles, each holding a story waiting to be continued by you.
         </P>
-      </div>
-      <div className={styles.content_wrapper}>
+
         <H2>Our Collection</H2>
         <TwoByOne>
           <Img
@@ -69,12 +68,16 @@ export default function Home() {
             height={1920}
           />
         </TwoByOne>
-      </div>
-      <div className={styles.content_wrapper}>
+
+        <H2>Invitation to Connect</H2>
+        <P>Let&apos;s Journey Together</P>
+        <P>
+          <code>[contact form here]</code>
+        </P>
+
         <H2>Highlight Reel</H2>
         <Video />
-      </div>
-      <div className={styles.content_wrapper}>
+
         <H2>Our Story</H2>
         <P>
           Rooted in a Lifelong Passion - From Childhood Dreams to Reality Meet
@@ -91,8 +94,7 @@ export default function Home() {
           width={1920}
           height={1200}
         />
-      </div>
-      <div className={styles.content_wrapper}>
+
         <H2>What We Do</H2>
         <P>
           Unearthing Hidden Gems - Restoring Classics to Pristine Glory We
@@ -120,11 +122,6 @@ export default function Home() {
           every step of the way.
         </P>
 
-        <H2>Invitation to Connect</H2>
-        <P>Let&apos;s Journey Together</P>
-        <P>
-          <code>[contact form here]</code>
-        </P>
         <P>
           Your dream car awaits. Contact us to embark on a journey where
           history, craftsmanship, and passion converge. At HMS CLassics,

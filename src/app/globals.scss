@@ -1,24 +1,27 @@
 @import './styles/typography';
 
 :root {
-  --border-radius: 5px;
   --content-padding: 1.5rem;
   --content-section-gap: 1.5rem;
   --gutter: 0.5rem;
+  --media-grid-gap: 0.5rem;
+
   --header-height: 5.75rem;
   --max-content-width: 1200px;
-  --media-grid-gap: 0.5rem;
-  --text-color: #121212;
-  --color-dark-grey: #333;
+
+  --color-dark-grey: #2b2b23;
   --color-light-grey: #434343;
   --color-border-light-grey: #acacac;
   --color-white: #fff;
+
   --breakpoint-small: 350px;
   --breakpoint-small-medium: 460px;
   --breakpoint-medium: 750px;
   --breakpoint-large: 1024px;
   --breakpoint-x-large: 1280px;
   --breakpoint-xx-large: 1600px;
+
+  --border-radius: 5px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -39,10 +42,15 @@ body {
   overflow-x: hidden;
   font-size: $type-base-size;
   line-height: 1.5;
+  background-color: #fffaf0;
 }
 
 body {
-  color: rgb(var(--text-color));
+  color: var(--color-dark-grey);
+  // font-family: var(--font-jost);
+  font-family: var(--font-montserrat);
+  font-weight: 400;
+  font-style: normal;
 }
 
 a {

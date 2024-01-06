@@ -96,6 +96,7 @@ h1,
 h2,
 h3,
 h4 {
+  font-family: var(--font-montserrat);
   // Help prevent overflow of long words/names/URLs
   word-break: break-word;
 
@@ -115,5 +116,9 @@ h4 {
 }
 
 p {
+  font-family: var(--font-jost);
+  font-size: 1.1rem;
+  line-height: 1.42;
+  max-width: 760px;
   margin-bottom: 1rem;
 }
