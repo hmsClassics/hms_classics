@@ -3,37 +3,91 @@
 
 .header {
   height: var(--header-height);
-}
 
-.header__content {
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: 100%;
-  width: calc(100% - (var(--content-padding) * 2));
-  max-width: var(--max-content-width);
-  margin: 0 auto;
-  padding: var(--content-padding) 0;
-  border-bottom: 1px solid var(--color-border-light-grey);
-  z-index: 6;
+  &--hero {
+    position: relative;
+    height: 60vmax;
+    min-height: 460px;
+    background: linear-gradient(
+        to bottom,
+        rgba(43, 43, 35, 0.75),
+        rgba(0, 0, 0, 0.15)
+      ),
+      url('/images/bmw-m4-csl-mi_landscape.jpg') no-repeat center center fixed;
+    background-size: cover;
 
-  h1 {
-    height: 100%;
-    margin: 0 auto 0 0;
-
-    img {
-      height: 100%;
-      width: auto;
+    &__content {
     }
   }
 
-  @media only screen and (min-width: $medium) {
-    margin: 0 0 0 var(--content-padding);
-    padding: var(--content-padding) 0;
+  &__content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    max-height: var(--header-height);
     width: calc(100% - (var(--content-padding) * 2));
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: var(--content-padding) 0;
+    border-bottom: 1px solid var(--color-border-light-grey);
+    z-index: 6;
+
+    h1 {
+      height: 100%;
+      margin: 0 auto 0 0;
+
+      img {
+        height: 100%;
+        width: auto;
+      }
+    }
+
+    @media only screen and (min-width: $medium) {
+      margin: 0 0 0 var(--content-padding);
+      padding: var(--content-padding) 0;
+      width: calc(100% - (var(--content-padding) * 2));
+    }
+
+    @media only screen and (min-width: $x-large) {
+      max-width: calc(var(--max-content-width) - (var(--content-padding) * 2));
+    }
+  }
+}
+
+.hero {
+  @media only screen and (min-width: $medium) {
+    width: 100%;
+    max-width: 100vw;
   }
 
   @media only screen and (min-width: $x-large) {
-    max-width: calc(var(--max-content-width) - (var(--content-padding) * 2));
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  &__title {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    align-items: end;
+    justify-items: baseline;
+    color: var(--color-white);
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.9);
+    padding: 3rem;
+    margin: 0;
+
+    h2 {
+      font-size: clamp(2rem, 8vw, 5.5rem);
+      font-weight: 700;
+
+      max-width: 69%;
+
+      @media only screen and (min-width: $large) {
+        max-width: 50%;
+      }
+    }
   }
 }

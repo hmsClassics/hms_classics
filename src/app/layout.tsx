@@ -46,7 +46,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cx(jost.variable, montserrat.variable)}>
-        <Header />
         {children}
         <Footer />
       </body>

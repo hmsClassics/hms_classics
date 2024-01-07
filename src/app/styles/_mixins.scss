@@ -4,12 +4,3 @@
   margin: 0;
   padding: var(--content-padding);
 }
-
-@mixin gradient-dark {
-  background: rgb(36, 36, 36);
-  background: linear-gradient(
-    0deg,
-    rgba(36, 36, 36, 1) 18%,
-    rgba(22, 22, 22, 1) 100%
-  );
-}

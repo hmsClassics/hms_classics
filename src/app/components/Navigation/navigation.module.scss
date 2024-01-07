@@ -60,18 +60,19 @@
     height: calc(var(--header-height));
     padding: var(--header-height) var(--content-padding) var(--content-padding);
     background: rgb(36, 36, 36);
-    background: linear-gradient(
-      0deg,
-      rgba(36, 36, 36, 1) 18%,
-      rgba(22, 22, 22, 1) 100%
-    );
+    background: var(--gradient-dark);
     transition: all 0.2s ease-in-out;
     font-size: 2.3rem;
     font-weight: 500;
 
     a {
-      color: var(--color-white);
       pointer-events: none;
+    }
+
+    .nav--hero & {
+      a {
+        color: var(--color-white);
+      }
     }
   }
 
@@ -178,8 +179,8 @@
         pointer-events: all;
 
         &:hover {
-          color: var(--color-dark-grey);
           text-decoration: underline;
+          color: var(--color-fl-gr-yellow);
         }
       }
     }

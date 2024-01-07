@@ -3,9 +3,17 @@ import Link from 'next/link'
 
 import styles from './navigation.module.scss'
 
-const PrimaryNav = () => {
+type NavProps = {
+  hero?: boolean
+}
+
+const PrimaryNav = ({ hero }: NavProps) => {
+  const navStyles = cx(styles.nav, styles.nav__primary, {
+    [styles['nav--hero']]: hero,
+  })
+
   return (
-    <nav className={cx(styles.nav, styles.nav__primary)}>
+    <nav className={navStyles}>
       <input
         type="checkbox"
         id="nav__checkbox"
@@ -44,6 +52,9 @@ const PrimaryNav = () => {
       <ul className={styles.nav__menu}>
         <li>
           <Link href="/">Home</Link>
+        </li>
+        <li>
+          <Link href="/cars">Collection</Link>
         </li>
         <li>
           <Link href="/contact">Contact</Link>

@@ -1,0 +1,29 @@
+.logo {
+  width: auto;
+  height: 100%;
+
+  .logo__stroke {
+    fill: none;
+    stroke-width: 6;
+  }
+
+  &--light {
+    .logo__fill {
+      fill: var(--color-off-white);
+    }
+
+    .logo__stroke {
+      stroke: var(--color-off-white);
+    }
+  }
+
+  &--dark {
+    .logo__fill {
+      fill: var(--color-dark-grey);
+    }
+
+    .logo__stroke {
+      stroke: var(--color-dark-grey);
+    }
+  }
+}
