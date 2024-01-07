@@ -1,16 +1,20 @@
-import styles from './page.module.scss'
+import { getPage } from './api/content-queries'
+import Header from './components/Header'
 import { H1, H2 } from './components/Typography/Headings'
 import P from './components/Typography/Paragraph'
+import { ThreeByOne, TwoByOne } from './components/MediaGrids'
 import Video from './components/Video'
 import Img from './components/Image'
-import { ThreeByOne, TwoByOne } from './components/MediaGrids'
-import Header from './components/Header'
+import styles from './page.module.scss'
+import { Page } from './api/graphql-types'
 
-export default function Home() {
+export default async function Home() {
+  const data: Page = await getPage('home')
+  console.log('💾 DATA', data)
+
   return (
     <>
       <Header hero={true} title={'Good vibes and sweet rides'} />
-      {/* <Header /> */}
       <main className={styles.main}>
         <div className={styles.content_wrapper}>
           <H1>Your Gateway to Exquisite BMW, VW, and Porsche Masterpieces</H1>
