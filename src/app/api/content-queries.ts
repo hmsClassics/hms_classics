@@ -33,6 +33,7 @@ const IMAGE_GRID_ATTRIBUTES = gql`
     images {
       ...imageAttributes
     }
+    style
   }
 `
 

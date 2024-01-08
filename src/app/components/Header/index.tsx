@@ -7,25 +7,33 @@ import Image from 'next/image'
 
 import logo from '../../../../public/images/logo.svg'
 import Logo from '../icons/Logo'
+import { ComponentLayoutHeader } from '../../api/graphql-types'
 
-type HeaderProps =
-  | {
-      hero: true
-      title: string
-    }
-  | {
-      hero?: never
-      title?: never
-    }
+export default function Header({
+  heroTitle,
+  background,
+  type,
+}: ComponentLayoutHeader) {
+  const hero = type === 'hero_1'
 
-export default function Header({ title, hero }: HeaderProps) {
+  // use cloudinary to get smallest image possible
+  const backgroundImg = background?.data?.attributes?.url
+
   const headerStyles = cx(styles.header, {
     [styles['header--hero']]: hero,
     [styles.hero]: hero,
   })
 
+  const backgroundStyles = `linear-gradient(
+        to bottom,
+        rgba(43, 43, 35, 0.75),
+        rgba(0, 0, 0, 0.15)
+      ), url(${backgroundImg})`
+
   return (
-    <header className={headerStyles}>
+    <header
+      className={headerStyles}
+      style={{ backgroundImage: backgroundStyles }}>
       <div className={styles.header__content}>
         <h1>
           <Link href="/">
@@ -38,7 +46,7 @@ export default function Header({ title, hero }: HeaderProps) {
 
       {hero && (
         <div className={styles.hero__title}>
-          <h2>{title}</h2>
+          <h2>{heroTitle}</h2>
         </div>
       )}
     </header>
