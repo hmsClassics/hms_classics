@@ -14,8 +14,8 @@ const client = new ApolloClient({
   },
 })
 
-const UPLOAD_FILE_ENTITY_RESPONSE_FRAGMENT = gql`
-  fragment MediaAttributes on UploadFileEntityResponse {
+const MEDIA_ATTRIBUTES_FRAGMENT = gql`
+  fragment mediaAttributes on UploadFileEntityResponse {
     data {
       attributes {
         url
@@ -28,31 +28,91 @@ const UPLOAD_FILE_ENTITY_RESPONSE_FRAGMENT = gql`
   }
 `
 
+const IMAGE_GRID_ATTRIBUTES = gql`
+  fragment imageGridAttributes on ComponentLayoutImageGrid {
+    images {
+      ...imageAttributes
+    }
+  }
+`
+
+const IMAGE_ATTRIBUTES = gql`
+  fragment imageAttributes on ComponentMediaImage {
+    alt_text
+    description
+    file {
+      ...mediaAttributes
+    }
+  }
+`
+
+const TEXT_BLOCK_ATTRIBUTES = gql`
+  fragment textBlockAttributes on ComponentLayoutTextBlock {
+    title {
+      ...headingAttributes
+    }
+    content
+  }
+`
+
+const HEADING_ATTRIBUTES = gql`
+  fragment headingAttributes on ComponentLayoutHeading {
+    text
+    level
+  }
+`
+
+const HEADER = gql`
+  fragment header on Page {
+    headerType {
+      type
+      heroTitle
+      background {
+        ...mediaAttributes
+      }
+    }
+  }
+`
+
+const PAGE_SEO_FRAGMENT = gql`
+  fragment pageSEO on Page {
+    seo {
+      htmlTitle
+      htmlDescription
+      socialImage {
+        ...mediaAttributes
+      }
+    }
+  }
+`
+
 export async function getPage(slug: string): Promise<Page> {
   const { data } = await client.query({
     query: gql`
-      fragment MediaAttributes on UploadFileEntityResponse {
-        data {
-          attributes {
-            url
-            alternativeText
-            caption
-            width
-            height
-          }
-        }
-      }
+      ${MEDIA_ATTRIBUTES_FRAGMENT}
+      ${HEADING_ATTRIBUTES}
+      ${HEADER}
+      ${PAGE_SEO_FRAGMENT}
+      ${TEXT_BLOCK_ATTRIBUTES}
+      ${IMAGE_ATTRIBUTES}
+      ${IMAGE_GRID_ATTRIBUTES}
 
       query GetPage($slug: String!) {
         pages(filters: { slug: { eq: $slug } }) {
           data {
             attributes {
               slug
-              headerType {
-                type
-                heroTitle
-                background {
-                  ...MediaAttributes
+              ...header
+              ...pageSEO
+              content {
+                ... on ComponentLayoutTextBlock {
+                  ...textBlockAttributes
+                }
+                ... on ComponentMediaImage {
+                  ...imageAttributes
+                }
+                ... on ComponentLayoutImageGrid {
+                  ...imageGridAttributes
                 }
               }
             }
