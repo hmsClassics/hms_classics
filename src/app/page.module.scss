@@ -1,9 +1,13 @@
 @import './styles/mixins';
 
 .main {
+  position: relative;
+  min-height: 70svh;
   display: flex;
   flex-direction: column;
-  padding: 1.5rem 0;
+  padding: 0;
+  background-color: var(--color-off-white);
+  z-index: 5;
 }
 
 .content_wrapper {

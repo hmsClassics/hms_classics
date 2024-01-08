@@ -31,9 +31,7 @@ export default function Header({
       ), url(${backgroundImg})`
 
   return (
-    <header
-      className={headerStyles}
-      style={{ backgroundImage: backgroundStyles }}>
+    <header className={headerStyles}>
       <div className={styles.header__content}>
         <h1>
           <Link href="/">
@@ -45,9 +43,14 @@ export default function Header({
       </div>
 
       {hero && (
-        <div className={styles.hero__title}>
-          <h2>{heroTitle}</h2>
-        </div>
+        <>
+          <div className={styles.hero__title}>
+            <h2>{heroTitle}</h2>
+          </div>
+          <div
+            className={styles.hero__background}
+            style={{ backgroundImage: backgroundStyles }}></div>
+        </>
       )}
     </header>
   )

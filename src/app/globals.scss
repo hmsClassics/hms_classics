@@ -1,4 +1,5 @@
 @import './styles/typography';
+@import './styles/variables';
 
 :root {
   --content-padding: 1.5rem;
@@ -34,6 +35,12 @@
     rgba(43, 43, 35, 1) 18%,
     rgba(56, 56, 46, 1) 100%
   );
+}
+
+@media only screen and (min-width: $medium) {
+  :root {
+    --content-padding: 3rem;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
