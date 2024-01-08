@@ -1,5 +1,7 @@
 import { PageContentDynamicZone } from '../api/graphql-types'
+import Img from '../components/Image'
 import MediaGrid from '../components/MediaGrids'
+import TextBlock from '../components/TextBlock'
 
 type ComponentTypeMap = {
   [key: string]: React.ComponentType<any>
@@ -7,6 +9,8 @@ type ComponentTypeMap = {
 
 const COMPONENT_MAP: ComponentTypeMap = {
   ComponentLayoutImageGrid: MediaGrid,
+  ComponentMediaImage: Img,
+  ComponentLayoutTextBlock: TextBlock,
   Error: () => <div>ERROR</div>,
 }
 
@@ -22,6 +26,10 @@ const renderComponent = (componentData: PageContentDynamicZone | null) => {
 
   switch (componentData.__typename) {
     case 'ComponentLayoutImageGrid':
+      return <Component key={componentData.id} {...componentData} />
+    case 'ComponentMediaImage':
+      return <Component key={componentData.id} {...componentData} />
+    case 'ComponentLayoutTextBlock':
       return <Component key={componentData.id} {...componentData} />
     default:
       return <div>No Component...</div>

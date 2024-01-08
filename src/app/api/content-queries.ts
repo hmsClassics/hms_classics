@@ -23,6 +23,7 @@ const MEDIA_ATTRIBUTES_FRAGMENT = gql`
         caption
         width
         height
+        provider_metadata
       }
     }
   }
@@ -39,6 +40,7 @@ const IMAGE_GRID_ATTRIBUTES = gql`
 
 const IMAGE_ATTRIBUTES = gql`
   fragment imageAttributes on ComponentMediaImage {
+    id
     alt_text
     description
     file {

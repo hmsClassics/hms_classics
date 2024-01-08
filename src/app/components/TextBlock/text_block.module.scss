@@ -1,0 +1,13 @@
+@import '../../styles/mixins';
+
+.text_block {
+  @include container();
+  gap: 0.5rem;
+  padding: 0 0 0 0;
+  margin: 2.5rem 0;
+
+  & > & {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
