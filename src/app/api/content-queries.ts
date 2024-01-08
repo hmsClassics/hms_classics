@@ -1,6 +1,9 @@
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
 import { Page } from './graphql-types'
 
+// this probably breaks some sweet nextjs stuff
+// but small edits in content weren't showing up.
+// after dev, we can probably remove this.
 const cacheBust = new Date().getSeconds()
 
 const client = new ApolloClient({
@@ -11,9 +14,35 @@ const client = new ApolloClient({
   },
 })
 
+const UPLOAD_FILE_ENTITY_RESPONSE_FRAGMENT = gql`
+  fragment MediaAttributes on UploadFileEntityResponse {
+    data {
+      attributes {
+        url
+        alternativeText
+        caption
+        width
+        height
+      }
+    }
+  }
+`
+
 export async function getPage(slug: string): Promise<Page> {
   const { data } = await client.query({
     query: gql`
+      fragment MediaAttributes on UploadFileEntityResponse {
+        data {
+          attributes {
+            url
+            alternativeText
+            caption
+            width
+            height
+          }
+        }
+      }
+
       query GetPage($slug: String!) {
         pages(filters: { slug: { eq: $slug } }) {
           data {
@@ -23,15 +52,7 @@ export async function getPage(slug: string): Promise<Page> {
                 type
                 heroTitle
                 background {
-                  data {
-                    attributes {
-                      url
-                      alternativeText
-                      caption
-                      width
-                      height
-                    }
-                  }
+                  ...MediaAttributes
                 }
               }
             }
