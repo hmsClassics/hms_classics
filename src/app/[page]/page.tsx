@@ -1,4 +1,4 @@
-import { getPage } from '../api/content-queries'
+import { getPage } from '../api/page-query'
 import { Page } from '../api/graphql-types'
 import renderComponent from '../utility/render_component'
 import Header from '../components/Header'
