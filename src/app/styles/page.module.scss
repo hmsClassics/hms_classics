@@ -1,0 +1,21 @@
+@import './mixins';
+
+.main {
+  position: relative;
+  min-height: 70svh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  background-color: var(--color-off-white);
+  z-index: 5;
+}
+
+.content_wrapper {
+  @include container();
+  padding: 0 var(--content-padding);
+
+  & > & {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}

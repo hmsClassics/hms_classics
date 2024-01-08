@@ -1,9 +1,15 @@
 @import '../../styles/variables';
 
-.img_grid {
+// 'landscape_x_landscape',
+// 'landscape_x_portrait',
+// 'portrait_x_landscape',
+// 'portrait_x_portrait',
+
+.media_grid {
   display: grid;
   grid-gap: var(--media-grid-gap);
   width: 100%;
+  margin-bottom: var(--media-grid-gap);
 
   img {
     display: block;
@@ -26,22 +32,22 @@
   }
 }
 
-.two_by_one {
+.landscape_x_landscape {
   grid-template-areas:
     'one'
     'two';
 
   @media only screen and (min-width: $small-medium) {
     grid-template-areas: 'one two';
-
-    &.portrait_x_landscape {
-      grid-template-columns: 2.5fr 6.4fr;
-    }
-
-    &.landscape_x_portrait {
-      grid-template-columns: 6.4fr 2.5fr;
-    }
   }
+}
+
+.portrait_x_landscape {
+  grid-template-columns: 2.5fr 6.4fr;
+}
+
+.landscape_x_portrait {
+  grid-template-columns: 6.4fr 2.5fr;
 }
 
 .three_by_one {

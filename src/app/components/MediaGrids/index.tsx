@@ -1,26 +1,16 @@
 import cx from 'classnames'
-
 import styles from './mediaGrids.module.scss'
+import { ComponentLayoutImageGrid } from '../../api/graphql-types'
+import Img from '../Image'
 
-interface MediaGridProps {
-  children: React.ReactNode
-  className?: string
-}
+export default function MediaGrid({ images, style }: ComponentLayoutImageGrid) {
+  const gridClasses = cx(styles.media_grid, {
+    [styles[style || 'auto']]: style,
+  })
 
-const TwoByOne = ({ children, className }: MediaGridProps) => {
   return (
-    <div className={cx(styles.img_grid, styles.two_by_one, className)}>
-      {children}
+    <div className={gridClasses}>
+      {images?.map((image) => image && <Img {...image} key={image.id} />)}
     </div>
   )
 }
-
-const ThreeByOne = ({ children, className }: MediaGridProps) => {
-  return (
-    <div className={cx(styles.img_grid, styles.three_by_one, className)}>
-      {children}
-    </div>
-  )
-}
-
-export { TwoByOne, ThreeByOne }

@@ -1,33 +1,24 @@
-import cx from 'classnames'
 import Image from 'next/image'
 
 import styles from './image.module.scss'
+import { ComponentMediaImage } from '../../api/graphql-types'
+import { ImageSerializer } from '../../utility/component_serializer'
 
-export interface ImageProps {
-  src: string
-  alt: string
-  width: number
-  height: number
-  inMasonry?: boolean
-}
+export default function Img(componentMediaImage: ComponentMediaImage) {
+  const serializedImage =
+    componentMediaImage && ImageSerializer.serialize(componentMediaImage)
 
-export default function Img({
-  src,
-  alt,
-  width,
-  height,
-  inMasonry = false,
-}: ImageProps) {
   return (
-    <div
-      className={cx(styles.image__wrapper, { [styles.inMasonry]: inMasonry })}>
-      <Image
-        src={src}
-        alt={alt}
-        className={styles.image}
-        width={width}
-        height={height}
-      />
+    <div className={styles.image__wrapper}>
+      {serializedImage?.url && serializedImage?.alt_text && (
+        <Image
+          src={serializedImage.url}
+          alt={serializedImage.alt_text}
+          className={styles.image}
+          width={serializedImage?.width}
+          height={serializedImage?.height}
+        />
+      )}
     </div>
   )
 }

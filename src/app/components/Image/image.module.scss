@@ -3,6 +3,7 @@
   width: 100%;
   height: min-content;
   overflow: hidden;
+  margin-bottom: var(--media-grid-gap);
 
   &.inMasonry {
     // for using the '@fristys/masonry' package

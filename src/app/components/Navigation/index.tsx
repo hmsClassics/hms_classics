@@ -2,12 +2,19 @@ import cx from 'classnames'
 import Link from 'next/link'
 
 import styles from './navigation.module.scss'
+import { FooterNavigation, PrimaryNavigation } from '../../api/graphql-types'
+import {
+  getFooterNavigation,
+  getPrimaryNavigation,
+} from '../../api/navigation-query'
 
-type NavProps = {
+type PrimaryNavProps = {
   hero?: boolean
 }
 
-const PrimaryNav = ({ hero }: NavProps) => {
+export async function PrimaryNav({ hero }: PrimaryNavProps) {
+  const data: PrimaryNavigation = await getPrimaryNavigation()
+  const links = data?.links
   const navStyles = cx(styles.nav, styles.nav__primary, {
     [styles['nav--hero']]: hero,
   })
@@ -50,30 +57,34 @@ const PrimaryNav = ({ hero }: NavProps) => {
         </svg>
       </label>
       <ul className={styles.nav__menu}>
-        <li>
-          <Link href="/">Home</Link>
-        </li>
-        <li>
-          <Link href="/cars">Collection</Link>
-        </li>
-        <li>
-          <Link href="/contact">Contact</Link>
-        </li>
+        {links?.map((link) => (
+          <Link
+            href={link?.url as string}
+            title={link?.title as string}
+            key={link?.id}>
+            {link?.linkText}
+          </Link>
+        ))}
       </ul>
     </nav>
   )
 }
 
-const FooterNav = () => {
+export async function FooterNav() {
+  const data: FooterNavigation = await getFooterNavigation()
+  const links = data?.links
   return (
     <nav className={cx(styles.nav, styles.nav__footer)}>
-      <ul>
-        <li>
-          <Link href="/contact">Contact Us</Link>
-        </li>
+      <ul className={styles.nav__menu}>
+        {links?.map((link) => (
+          <Link
+            href={link?.url as string}
+            title={link?.title as string}
+            key={link?.id}>
+            {link?.linkText}
+          </Link>
+        ))}
       </ul>
     </nav>
   )
 }
-
-export { PrimaryNav, FooterNav }

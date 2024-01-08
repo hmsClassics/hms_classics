@@ -1,3 +1,4 @@
+import { ComponentLayoutHeading } from '@/src/app/api/graphql-types'
 import styles from './headings.module.scss'
 
 interface HeadingProps {
@@ -20,4 +21,19 @@ const H4 = ({ children }: HeadingProps) => (
   <h4 className={styles.h4}>{children}</h4>
 )
 
-export { H1, H2, H3, H4 }
+const Heading = ({ id, level, text }: ComponentLayoutHeading) => {
+  switch (level) {
+    case 'h1':
+      return <H1 key={id}>{text}</H1>
+    case 'h2':
+      return <H2 key={id}>{text}</H2>
+    case 'h3':
+      return <H3 key={id}>{text}</H3>
+    case 'h4':
+      return <H4 key={id}>{text}</H4>
+    default:
+      return <H1 key={id}>{text}</H1>
+  }
+}
+
+export { Heading, H1, H2, H3, H4 }
