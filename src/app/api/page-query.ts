@@ -1,18 +1,6 @@
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client'
+import { gql } from '@apollo/client'
 import { Page } from './graphql-types'
-
-// this probably breaks some sweet nextjs stuff
-// but small edits in content weren't showing up.
-// after dev, we can probably remove this.
-const cacheBust = new Date().getSeconds()
-
-const client = new ApolloClient({
-  uri: `${process.env.STRAPI_GRAPHQL_ENDPOINT}?cacheBust=${cacheBust}`,
-  cache: new InMemoryCache(),
-  headers: {
-    Authorization: `Bearer ${process.env.STRAPI_API_TOKEN}`,
-  },
-})
+import client from './client'
 
 const MEDIA_ATTRIBUTES_FRAGMENT = gql`
   fragment mediaAttributes on UploadFileEntityResponse {
