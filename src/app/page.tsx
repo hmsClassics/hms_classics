@@ -2,12 +2,11 @@ import { getPage } from './api/content-queries'
 import { Page } from './api/graphql-types'
 import renderComponent from './utility/render_component'
 import Header from './components/Header'
-import styles from './page.module.scss'
+import styles from './styles/page.module.scss'
 
-export default async function Home() {
+export default async function Page() {
   const data: Page = await getPage('home')
   const pageContent = data?.content
-  console.log('💾 DATA', pageContent)
 
   return (
     <>

@@ -57,7 +57,7 @@ const PrimaryNav = ({ hero }: NavProps) => {
           <Link href="/cars">Collection</Link>
         </li>
         <li>
-          <Link href="/contact">Contact</Link>
+          <Link href="/contact-us">Contact</Link>
         </li>
       </ul>
     </nav>
@@ -69,7 +69,7 @@ const FooterNav = () => {
     <nav className={cx(styles.nav, styles.nav__footer)}>
       <ul>
         <li>
-          <Link href="/contact">Contact Us</Link>
+          <Link href="/contact-us">Contact Us</Link>
         </li>
       </ul>
     </nav>
