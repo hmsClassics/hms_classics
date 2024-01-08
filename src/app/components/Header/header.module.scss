@@ -9,11 +9,6 @@
   &--hero {
     position: relative;
     height: var(--hero-height);
-    background: linear-gradient(
-      to bottom,
-      rgba(43, 43, 35, 0.75),
-      rgba(0, 0, 0, 0.15)
-    );
     background-position: right bottom;
     background-repeat: no-repeat;
     // background-attachment: fixed;
@@ -45,6 +40,8 @@
     h1 {
       height: 100%;
       margin: 0 auto 0 0;
+      position: relative;
+      z-index: 7;
     }
 
     @media only screen and (min-width: $medium) {
@@ -109,17 +106,37 @@
     height: var(--hero-height);
     z-index: 4;
 
-    background: linear-gradient(
-      to bottom,
-      rgba(43, 43, 35, 0.75),
-      rgba(0, 0, 0, 0.15)
-    );
     background-position: right bottom;
     background-repeat: no-repeat;
     background-size: contain, cover;
 
+    &:after {
+      display: block;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--hero-height);
+      background: linear-gradient(
+        to bottom,
+        rgba(43, 43, 35, 0.75),
+        rgba(0, 0, 0, 0.15)
+      );
+
+      @include landscape() {
+        height: var(--hero-landscape-height);
+      }
+    }
+
     @include landscape() {
       height: var(--hero-landscape-height);
+    }
+
+    &__image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   }
 }

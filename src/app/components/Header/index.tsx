@@ -3,11 +3,10 @@ import cx from 'classnames'
 import Link from 'next/link'
 import { PrimaryNav } from '../Navigation'
 import styles from './header.module.scss'
-import Image from 'next/image'
-
-import logo from '../../../../public/images/logo.svg'
 import Logo from '../icons/Logo'
 import { ComponentLayoutHeader } from '../../api/graphql-types'
+import { serializedUploadFileEntityResponse } from '../../utility/component_serializer'
+import Image from 'next/image'
 
 export default function Header({
   heroTitle,
@@ -17,18 +16,13 @@ export default function Header({
   const hero = type === 'hero_1'
 
   // use cloudinary to get smallest image possible
-  const backgroundImg = background?.data?.attributes?.url
+  const serializedImage =
+    background && serializedUploadFileEntityResponse(background)
 
   const headerStyles = cx(styles.header, {
     [styles['header--hero']]: hero,
     [styles.hero]: hero,
   })
-
-  const backgroundStyles = `linear-gradient(
-        to bottom,
-        rgba(43, 43, 35, 0.75),
-        rgba(0, 0, 0, 0.15)
-      ), url(${backgroundImg})`
 
   return (
     <header className={headerStyles}>
@@ -47,9 +41,15 @@ export default function Header({
           <div className={styles.hero__title}>
             <h2>{heroTitle}</h2>
           </div>
-          <div
-            className={styles.hero__background}
-            style={{ backgroundImage: backgroundStyles }}></div>
+          <div className={styles.hero__background}>
+            <Image
+              src={serializedImage?.url || '/images/home-header-bg.webp'}
+              alt={serializedImage?.alt_text || 'home header background'}
+              width={serializedImage?.width}
+              height={serializedImage?.height}
+              className={styles.hero__background__image}
+            />
+          </div>
         </>
       )}
     </header>
