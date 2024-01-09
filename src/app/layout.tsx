@@ -1,9 +1,9 @@
 import cx from 'classnames'
-
-import type { Metadata } from 'next'
 import { Jost, Montserrat } from 'next/font/google'
-import './globals.scss'
+import type { Metadata } from 'next'
+
 import Footer from './components/Footer'
+import './globals.scss'
 
 const jost = Jost({ subsets: ['latin'], variable: '--font-jost' })
 const montserrat = Montserrat({
@@ -12,9 +12,6 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  title: 'HSM Classics',
-  description:
-    'Where Passion Meets Precision in Every Classic Car. We specialize in BMW, VW, and Porsche.',
   icons: [
     {
       rel: 'icon',

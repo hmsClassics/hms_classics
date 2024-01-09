@@ -29,9 +29,10 @@ function cloudinary() {
 }
 
 export function serializedUploadFileEntityResponse(
-  file: UploadFileEntityResponse
+  file: Maybe<UploadFileEntityResponse> | undefined
 ) {
-  const provider_metadata = file.data?.attributes?.provider_metadata
+  const file_attributes = file?.data?.attributes
+  const provider_metadata = file_attributes?.provider_metadata
 
   let cloudImage
   let imageURL: string
@@ -43,15 +44,15 @@ export function serializedUploadFileEntityResponse(
 
     imageURL = cloudImage.toURL()
   } else {
-    imageURL = file.data?.attributes?.url ?? ''
+    imageURL = file_attributes?.url ?? ''
   }
 
   return {
     url: imageURL,
-    alt_text: file.data?.attributes?.alternativeText ?? '',
-    caption: file.data?.attributes?.caption ?? '',
-    width: file.data?.attributes?.width ?? 0,
-    height: file.data?.attributes?.height ?? 0,
+    alt_text: file_attributes?.alternativeText ?? '',
+    caption: file_attributes?.caption ?? '',
+    width: file_attributes?.width ?? 0,
+    height: file_attributes?.height ?? 0,
   }
 }
 
