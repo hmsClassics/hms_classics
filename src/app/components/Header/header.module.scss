@@ -2,9 +2,10 @@
 @import '../../styles/variables';
 
 .header {
-  height: var(--header-height);
   --hero-height: 42svh;
   --hero-landscape-height: 90svh;
+
+  height: var(--header-height);
 
   &--hero {
     position: relative;

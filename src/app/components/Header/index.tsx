@@ -48,6 +48,7 @@ export default function Header({
               width={serializedImage?.width}
               height={serializedImage?.height}
               className={styles.hero__background__image}
+              priority
             />
           </div>
         </>

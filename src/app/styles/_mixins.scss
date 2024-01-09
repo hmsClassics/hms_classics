@@ -6,7 +6,7 @@
 }
 
 @mixin landscape {
-  @media only screen and (min-aspect-ratio: 4/3) {
+  @media only screen and (min-aspect-ratio: 4/3) and (orientation: landscape) {
     @content;
   }
 }
