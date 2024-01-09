@@ -1,12 +1,47 @@
+import { type Metadata, type ResolvingMetadata } from 'next/types'
+
 import { getPage } from './api/page-query'
 import { Page } from './api/graphql-types'
 import renderComponent from './utility/render_component'
 import Header from './components/Header'
 import styles from './styles/page.module.scss'
+import { serializedUploadFileEntityResponse } from './utility/component_serializer'
+
+export const generateMetadata = async (
+  parent: ResolvingMetadata
+): Promise<Metadata> => {
+  const data: Page = await getPage('home')
+  const pageSeo = data?.seo
+  const image_info = serializedUploadFileEntityResponse(pageSeo.socialImage)
+  const previousImages = (await parent).openGraph?.images || []
+
+  const metadata: Metadata = {
+    title: pageSeo.htmlTitle,
+    description: pageSeo.htmlDescription,
+    openGraph: {
+      images: [
+        {
+          url: image_info.url,
+          width: image_info.width,
+          height: image_info.height,
+          alt: image_info.alt_text,
+        },
+        ...previousImages,
+      ],
+      url: `${process.env.NEXT_PUBLIC_ROOT_URL}/`,
+      type: 'website',
+      siteName: pageSeo.htmlTitle,
+      locale: 'en_US',
+    },
+    ...parent,
+  }
+
+  return metadata
+}
 
 export default async function Page() {
   const data: Page = await getPage('home')
-  const pageContent = data?.content
+  const pageContent = data.content
 
   return (
     <>
