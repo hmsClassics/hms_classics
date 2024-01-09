@@ -12,7 +12,8 @@ const LINK_ATTRIBUTES = gql`
 `
 
 export async function getPrimaryNavigation(): Promise<PrimaryNavigation> {
-  const { data } = await client.query({
+  const cacheBustedClient = client(Date.now().toString())
+  const { data } = await cacheBustedClient.query({
     query: gql`
       ${LINK_ATTRIBUTES}
 
@@ -36,7 +37,8 @@ export async function getPrimaryNavigation(): Promise<PrimaryNavigation> {
 }
 
 export async function getFooterNavigation(): Promise<FooterNavigation> {
-  const { data } = await client.query({
+  const cacheBustedClient = client(Date.now().toString())
+  const { data } = await cacheBustedClient.query({
     query: gql`
       ${LINK_ATTRIBUTES}
 

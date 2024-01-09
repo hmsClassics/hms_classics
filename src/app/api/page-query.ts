@@ -78,7 +78,9 @@ const PAGE_SEO_FRAGMENT = gql`
 `
 
 export async function getPage(slug: string): Promise<Page> {
-  const { data } = await client.query({
+  const cacheBustedClient = client(Date.now().toString())
+
+  const { data } = await cacheBustedClient.query({
     query: gql`
       ${MEDIA_ATTRIBUTES_FRAGMENT}
       ${HEADING_ATTRIBUTES}
@@ -112,6 +114,11 @@ export async function getPage(slug: string): Promise<Page> {
       }
     `,
     variables: { slug },
+    context: {
+      fetchOptions: {
+        next: { revalidate: 5 },
+      },
+    },
   })
 
   return data.pages.data[0].attributes
