@@ -1,4 +1,4 @@
-import { type Metadata, type ResolvingMetadata } from 'next/types'
+import { type Metadata } from 'next/types'
 
 import { getPage } from '../api/page-query'
 import { Page } from '../api/graphql-types'
@@ -8,15 +8,12 @@ import styles from '../styles/page.module.scss'
 import { serializedUploadFileEntityResponse } from '../utility/component_serializer'
 import { PageProps } from '@/.next/types/app/page'
 
-export const generateMetadata = async (
-  { params }: PageProps,
-  parent: ResolvingMetadata
-): Promise<Metadata> => {
-  const slug = params?.page || 'home'
-  const data: Page = await getPage(slug)
+export const generateMetadata = async ({
+  params,
+}: PageProps): Promise<Metadata> => {
+  const data: Page = await getPage(params.page)
   const pageSeo = data?.seo
   const image_info = serializedUploadFileEntityResponse(pageSeo.socialImage)
-  const previousImages = (await parent).openGraph?.images || []
 
   const metadata: Metadata = {
     title: pageSeo.htmlTitle,
@@ -29,22 +26,19 @@ export const generateMetadata = async (
           height: image_info.height,
           alt: image_info.alt_text,
         },
-        ...previousImages,
       ],
       url: `${process.env.NEXT_PUBLIC_ROOT_URL}/`,
       type: 'website',
       siteName: pageSeo.htmlTitle,
       locale: 'en_US',
     },
-    ...parent,
   }
 
   return metadata
 }
 
 export default async function Page({ params }: { params: { page: string } }) {
-  const slug = params?.page || 'home'
-  const data: Page = await getPage(slug)
+  const data: Page = await getPage(params.page)
   const pageContent = data?.content
 
   return (
