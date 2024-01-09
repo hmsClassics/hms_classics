@@ -32,7 +32,8 @@
   }
 }
 
-.landscape_x_landscape {
+.landscape_x_landscape,
+.portrait_x_portrait {
   grid-template-areas:
     'one'
     'two';

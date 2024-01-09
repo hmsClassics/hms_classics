@@ -4,8 +4,6 @@ import type { Metadata } from 'next'
 import { Jost, Montserrat } from 'next/font/google'
 import './globals.scss'
 import Footer from './components/Footer'
-import createApolloClient from './utility/apolloClient'
-import { ApolloProvider } from '@apollo/client'
 
 const jost = Jost({ subsets: ['latin'], variable: '--font-jost' })
 const montserrat = Montserrat({
