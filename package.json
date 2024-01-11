@@ -7,13 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "codegen": "graphql-codegen --config codegen.ts"
+    "codegen": "graphql-codegen --config utility/codegen.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.8.8",
     "@cloudinary/react": "^1.11.2",
     "@cloudinary/url-gen": "^1.14.0",
     "@fristys/masonry": "^1.1.7",
+    "@hookform/resolvers": "^3.3.4",
     "@strapi/blocks-react-renderer": "^1.0.0",
     "add": "^2.0.6",
     "classnames": "^2.4.0",
@@ -21,7 +22,10 @@
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
-    "react-responsive-masonry": "^2.1.7"
+    "react-hook-form": "^7.49.3",
+    "react-responsive-masonry": "^2.1.7",
+    "resend": "^2.1.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",
