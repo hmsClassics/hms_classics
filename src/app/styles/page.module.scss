@@ -3,16 +3,17 @@
 .main {
   position: relative;
   min-height: 70svh;
-  display: flex;
-  flex-direction: column;
-  padding: 0;
+  padding: var(--content-padding) 0;
   background-color: var(--color-off-white);
   z-index: 5;
 }
 
 .content_wrapper {
   @include container();
-  padding: 0 var(--content-padding) var(--content-padding);
+  padding: 0 var(--content-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--media-grid-gap);
 
   & > & {
     padding-right: 0;
