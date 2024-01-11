@@ -3,11 +3,25 @@
 .text_block {
   @include container();
   gap: 0.5rem;
-  padding: 0 0 0 0;
-  margin: 2.5rem 0;
+  padding: 0;
+  margin: 1.5rem 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   & > & {
     padding-right: 0;
     padding-left: 0;
+  }
+
+  p {
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }

@@ -7,9 +7,8 @@
 
 .media_grid {
   display: grid;
-  grid-gap: var(--media-grid-gap);
+  gap: var(--media-grid-gap);
   width: 100%;
-  margin-bottom: var(--media-grid-gap);
 
   img {
     display: block;
