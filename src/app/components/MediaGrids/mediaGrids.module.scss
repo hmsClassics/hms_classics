@@ -30,6 +30,11 @@
   div:nth-child(3) {
     grid-area: three;
   }
+
+  > div {
+    margin-bottom: 0;
+    height: 100%;
+  }
 }
 
 .landscape_x_landscape,
@@ -49,6 +54,37 @@
 
 .landscape_x_portrait {
   grid-template-columns: 6.4fr 2.5fr;
+}
+
+.auto {
+  grid-template-columns: auto;
+
+  &--2 {
+    grid-template-areas:
+      'one'
+      'two';
+
+    @media only screen and (min-width: $small-medium) {
+      grid-template-areas: 'one two';
+    }
+  }
+
+  &--3 {
+    grid-template-areas:
+      'one'
+      'two'
+      'three';
+
+    @media only screen and (min-width: $small-medium) {
+      grid-template-areas:
+        'one one'
+        'two three';
+    }
+
+    @media only screen and (min-width: $medium) {
+      grid-template-areas: 'one two three';
+    }
+  }
 }
 
 .three_by_one {

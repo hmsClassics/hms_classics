@@ -4,8 +4,10 @@ import { ComponentLayoutImageGrid } from '../../api/graphql-types'
 import Img from '../Image'
 
 export default function MediaGrid({ images, style }: ComponentLayoutImageGrid) {
+  const gridType = style || 'auto'
   const gridClasses = cx(styles.media_grid, {
-    [styles[style || 'auto']]: style,
+    [styles[gridType]]: style,
+    [styles[`auto--${images?.length}`]]: gridType === 'auto',
   })
 
   return (
