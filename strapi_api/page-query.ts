@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
-import { Page } from '@api/graphql-types'
-import client from '@api/client'
+import { Page } from '@strapi/graphql-types'
+import client from '@strapi/client'
 
 const MEDIA_ATTRIBUTES_FRAGMENT = gql`
   fragment mediaAttributes on UploadFileEntityResponse {

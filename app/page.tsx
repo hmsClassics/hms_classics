@@ -1,7 +1,7 @@
 import { type Metadata } from 'next/types'
 
-import { getPage } from '@api/page-query'
-import { Page } from '@api/graphql-types'
+import { getPage } from '@strapi/page-query'
+import { Page } from '@strapi/graphql-types'
 import renderComponent from '@utility/render_component'
 import Header from '@components/Header'
 import styles from '@styles/page.module.scss'

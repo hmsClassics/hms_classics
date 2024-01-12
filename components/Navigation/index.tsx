@@ -2,11 +2,11 @@ import cx from 'classnames'
 import Link from 'next/link'
 
 import styles from './navigation.module.scss'
-import { FooterNavigation, PrimaryNavigation } from '@api/graphql-types'
+import { FooterNavigation, PrimaryNavigation } from '@strapi/graphql-types'
 import {
   getFooterNavigation,
   getPrimaryNavigation,
-} from '@api/navigation-query'
+} from '@strapi/navigation-query'
 
 type PrimaryNavProps = {
   hero?: boolean

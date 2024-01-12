@@ -22,7 +22,7 @@
       "@/*": ["./*"],
       "@components/*": ["./components/*"],
       "@styles/*": ["./styles/*"],
-      "@api/*": ["./app/api/*"],
+      "@strapi/*": ["./strapi_api/*"],
       "@lib/*": ["./lib/*"],
       "@utility/*": ["./utility/*"]
     }

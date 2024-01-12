@@ -55,6 +55,10 @@
     .nav__menu {
       gap: 1rem;
     }
+
+    a {
+      color: var(--color-off-white);
+    }
   }
 
   &__close_icon {

@@ -1,6 +1,6 @@
 import cx from 'classnames'
 import styles from './mediaGrids.module.scss'
-import { ComponentLayoutImageGrid } from '@api/graphql-types'
+import { ComponentLayoutImageGrid } from '@strapi/graphql-types'
 import Img from '@components/Image'
 
 export default function MediaGrid({ images, style }: ComponentLayoutImageGrid) {

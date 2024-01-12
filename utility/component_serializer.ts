@@ -5,7 +5,7 @@ import {
   Maybe,
   Scalars,
   UploadFileEntityResponse,
-} from '../app/api/graphql-types'
+} from '@strapi/graphql-types'
 import { Delivery } from '@cloudinary/url-gen/actions/delivery'
 
 export interface ImageSerializerResponse {

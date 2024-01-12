@@ -2,9 +2,9 @@ import type { CodegenConfig } from '@graphql-codegen/cli'
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: 'app/api/schema.graphql',
+  schema: 'strapi_api/schema.graphql',
   generates: {
-    'app/api/graphql-types.ts': {
+    'strapi_api/graphql-types.ts': {
       plugins: [
         'typescript',
         'typescript-operations',

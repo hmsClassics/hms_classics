@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client'
-import { FooterNavigation, PrimaryNavigation } from '@api/graphql-types'
-import client from '@api/client'
+import { FooterNavigation, PrimaryNavigation } from '@strapi/graphql-types'
+import client from '@strapi/client'
 
 const LINK_ATTRIBUTES = gql`
   fragment linkAttributes on ComponentLayoutLink {

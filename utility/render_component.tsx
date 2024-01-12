@@ -1,7 +1,7 @@
-import { PageContentDynamicZone } from '../app/api/graphql-types'
-import Img from '../components/Image'
-import MediaGrid from '../components/MediaGrids'
-import TextBlock from '../components/TextBlock'
+import { PageContentDynamicZone } from '@strapi/graphql-types'
+import Img from '@components/Image'
+import MediaGrid from '@components/MediaGrids'
+import TextBlock from '@components/TextBlock'
 
 type ComponentTypeMap = {
   [key: string]: React.ComponentType<any>
