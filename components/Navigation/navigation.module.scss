@@ -9,6 +9,16 @@
     }
   }
 
+  a {
+    color: var(--color-dark-grey);
+  }
+
+  @media only screen and (max-width: calc($medium - 1px)) {
+    a {
+      color: var(--color-off-white);
+    }
+  }
+
   &__primary {
     --nav-button-height: 2rem;
 
@@ -34,20 +44,16 @@
         var(--content-padding);
       transition: all 0.2s ease-in-out;
       background: var(--gradient-dark);
+    }
 
-      a {
-        pointer-events: none;
-      }
+    a {
+      pointer-events: none;
     }
   }
 
   &__footer {
     .nav__menu {
       gap: 1rem;
-
-      a {
-        color: var(--off-white);
-      }
     }
   }
 
@@ -78,10 +84,6 @@
     width: 100vw;
     background-repeat: no-repeat;
     font-weight: 500;
-
-    a {
-      color: var(--color-white);
-    }
   }
 
   &__menu_icon {
@@ -128,7 +130,7 @@
   &__checkbox {
     display: none;
 
-    @media only screen and (max-width: $medium) {
+    @media only screen and (max-width: calc($medium - 1px)) {
       &:checked {
         & ~ .nav__menu {
           position: fixed;
@@ -176,11 +178,11 @@
         background: transparent;
         flex-direction: row;
         font-size: 0.95rem;
+      }
 
-        a {
-          text-decoration: none;
-          pointer-events: all;
-        }
+      a {
+        text-decoration: none;
+        pointer-events: all;
       }
     }
 
@@ -191,12 +193,18 @@
     &__menu {
       flex-direction: row;
       font-size: 0.95rem;
+    }
 
+    a {
+      &:hover {
+        text-decoration: underline;
+        color: var(--color-fl-gr-yellow);
+      }
+    }
+
+    &--hero {
       a {
-        &:hover {
-          text-decoration: underline;
-          color: var(--color-fl-gr-yellow);
-        }
+        color: var(--color-off-white);
       }
     }
   }

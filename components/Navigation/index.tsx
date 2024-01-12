@@ -58,12 +58,11 @@ export async function PrimaryNav({ hero }: PrimaryNavProps) {
       </label>
       <ul className={styles.nav__menu}>
         {links?.map((link) => (
-          <Link
-            href={link?.url as string}
-            title={link?.title as string}
-            key={link?.id}>
-            {link?.linkText}
-          </Link>
+          <li key={link?.id}>
+            <Link href={link?.url as string} title={link?.title as string}>
+              {link?.linkText}
+            </Link>
+          </li>
         ))}
       </ul>
     </nav>
@@ -77,12 +76,11 @@ export async function FooterNav() {
     <nav className={cx(styles.nav, styles.nav__footer)}>
       <ul className={styles.nav__menu}>
         {links?.map((link) => (
-          <Link
-            href={link?.url as string}
-            title={link?.title as string}
-            key={link?.id}>
-            {link?.linkText}
-          </Link>
+          <li key={link?.id}>
+            <Link href={link?.url as string} title={link?.title as string}>
+              {link?.linkText}
+            </Link>
+          </li>
         ))}
       </ul>
     </nav>
