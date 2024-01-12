@@ -6,6 +6,7 @@ import renderComponent from '@utility/render_component'
 import Header from '@components/Header'
 import styles from '@styles/page.module.scss'
 import { serializedUploadFileEntityResponse } from '@utility/component_serializer'
+import ContactForm from '@/components/ContactForm'
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const data: Page = await getPage('home')
@@ -44,7 +45,7 @@ export default async function Page() {
       <main className={styles.main}>
         <div className={styles.content_wrapper}>
           {pageContent && pageContent.map(renderComponent)}
-          <div>Contact Form</div>
+          <ContactForm />
         </div>
       </main>
     </>
