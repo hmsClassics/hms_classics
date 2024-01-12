@@ -1,7 +1,7 @@
 import Image from 'next/image'
 
 import styles from './image.module.scss'
-import { ComponentMediaImage } from '@api/graphql-types'
+import { ComponentMediaImage } from '@strapi/graphql-types'
 import { ImageSerializer } from '@utility/component_serializer'
 
 export default function Img(componentMediaImage: ComponentMediaImage) {

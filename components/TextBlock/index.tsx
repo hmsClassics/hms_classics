@@ -4,7 +4,7 @@ import styles from './text_block.module.scss'
 
 import { BlocksRenderer } from '@strapi/blocks-react-renderer'
 import Link from 'next/link'
-import { ComponentLayoutTextBlock } from '@api/graphql-types'
+import { ComponentLayoutTextBlock } from '@strapi/graphql-types'
 import P from '@components/Typography/Paragraph'
 import { H1, H2, H3, H4, Heading } from '@components/Typography/Headings'
 
