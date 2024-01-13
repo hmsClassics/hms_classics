@@ -16,10 +16,10 @@ export async function sendEmail(data: ContactFormInputs) {
     try {
       const data = await resend.emails.send({
         from: 'robut@grouch.dev',
-        to: ['steve@grouch.dev'],
+        to: ['james@hmsclassics.com'],
         subject: 'Contact form submission',
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
-        react: ContactFormEmail({ name, email, message })
+        react: ContactFormEmail({ name, email, message }),
       })
       return { success: true, data }
     } catch (error) {
