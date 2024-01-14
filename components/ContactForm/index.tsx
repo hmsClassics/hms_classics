@@ -9,7 +9,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { sendEmail } from '@/app/_actions'
-import P from '@components/Typography/Paragraph'
+import InputField from '../InputField'
+import SubmitButton from '../SubmitButton'
 
 type Inputs = z.infer<typeof ContactFormSchema>
 type Result = {
@@ -60,43 +61,31 @@ export default function ContactForm() {
       })}>
       <div className={styles.contact_form__wrapper}>
         <form onSubmit={handleSubmit(processForm)} className={cx(styles.form)}>
-          <label htmlFor="name" className={cx([styles.name, styles.label])}>
-            <span className={styles.labelText}>Name</span>
-            <input type="text" {...register('name', { required: true })} />
+          <InputField
+            label="Name"
+            name="name"
+            type="text"
+            required={register}
+            error={errors.name}
+          />
 
-            {errors.name?.message && (
-              <P extraClass={styles.errorMsg}>{errors.name.message}</P>
-            )}
-          </label>
+          <InputField
+            label="Email"
+            name="email"
+            type="email"
+            required={register}
+            error={errors.email}
+          />
 
-          <label htmlFor="email" className={cx([styles.email, styles.label])}>
-            <span className={styles.labelText}>Email</span>
-            <input type="email" {...register('email', { required: true })} />
+          <InputField
+            label="Message"
+            name="message"
+            type="textarea"
+            required={register}
+            error={errors.message}
+          />
 
-            {errors.email?.message && (
-              <P extraClass={styles.errorMsg}>{errors.email.message}</P>
-            )}
-          </label>
-
-          <label
-            htmlFor="message"
-            className={cx([styles.message, styles.label])}>
-            <span className={styles.labelText}>Message</span>
-            <textarea
-              {...register('message', { required: true })}
-              className={styles.message}
-            />
-
-            {errors.message?.message && (
-              <P extraClass={styles.errorMsg}>{errors.message.message}</P>
-            )}
-          </label>
-
-          <button
-            className={cx(styles.submit, { [styles.disabled]: isSubmitting })}
-            disabled={isSubmitting}>
-            {isSubmitting ? 'Sending...' : 'Send'}
-          </button>
+          <SubmitButton isSubmitting={isSubmitting} contextStyles={styles} />
         </form>
       </div>
     </div>
