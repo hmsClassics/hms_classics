@@ -1,5 +1,10 @@
-schema: 'api/schema.graphql'
-extensions:
-  endpoints:
-    default:
-      url: http://localhost:1337/graphql
+schema:
+  - http://localhost:1337/graphql:
+      headers:
+        Authorization: 'Bearer e78e45fc8b5f96a76bb951b022bf541e6d43f7d3a4c543d9d841505ef092a43a0b6d230fb089930190cc24f0c96e1c795deaadd2d43e3914d9402a0f91e794a1e0488d5b43f56b0ce45a5de4cdfc91d3481fd409cc76bd0e024864420ce5ac0ce8d4d526734027c9ac9fc46b05979a065ac364c4050982b80ad8f47f93662a20'
+generates:
+  ./strapi_api/types.d.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'

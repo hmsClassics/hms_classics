@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { PrimaryNav } from '@components/Navigation'
 import styles from './header.module.scss'
 import Logo from '@components/icons/Logo'
-import { ComponentLayoutHeader } from '@strapi/graphql-types'
+import { ComponentLayoutHeader } from '@strapi/types'
 import { serializedUploadFileEntityResponse } from '@utility/component_serializer'
 import Image from 'next/image'
 

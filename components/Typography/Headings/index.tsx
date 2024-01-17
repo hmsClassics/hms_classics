@@ -1,4 +1,4 @@
-import { ComponentLayoutHeading } from '@strapi/graphql-types'
+import { ComponentLayoutHeading } from '@strapi/types'
 import styles from './headings.module.scss'
 
 interface HeadingProps {

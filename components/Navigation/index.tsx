@@ -2,7 +2,7 @@ import cx from 'classnames'
 import Link from 'next/link'
 
 import styles from './navigation.module.scss'
-import { FooterNavigation, PrimaryNavigation } from '@strapi/graphql-types'
+import { FooterNavigation, PrimaryNavigation } from '@strapi/types'
 import {
   getFooterNavigation,
   getPrimaryNavigation,
