@@ -47,7 +47,9 @@ export type BooleanFilterInput = {
 
 export type ComponentLayoutButton = {
   __typename?: 'ComponentLayoutButton';
+  button_text: Scalars['String']['output'];
   id: Scalars['ID']['output'];
+  link_target: Scalars['String']['output'];
 };
 
 export type ComponentLayoutCard = {
@@ -56,6 +58,8 @@ export type ComponentLayoutCard = {
   button?: Maybe<ComponentLayoutButton>;
   id: Scalars['ID']['output'];
   image?: Maybe<ComponentMediaImage>;
+  style?: Maybe<Enum_Componentlayoutcard_Style>;
+  theme_color?: Maybe<Enum_Componentlayoutcard_Theme_Color>;
   title?: Maybe<ComponentLayoutHeading>;
 };
 
@@ -167,6 +171,12 @@ export type ComponentMediaVideo = {
   __typename?: 'ComponentMediaVideo';
   description?: Maybe<Scalars['String']['output']>;
   file?: Maybe<UploadFileEntityResponse>;
+  id: Scalars['ID']['output'];
+};
+
+export type ComponentUtilityContactForm = {
+  __typename?: 'ComponentUtilityContactForm';
+  Type?: Maybe<Enum_Componentutilitycontactform_Type>;
   id: Scalars['ID']['output'];
 };
 
@@ -319,6 +329,17 @@ export type DateTimeFilterInput = {
   startsWith?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
+export enum Enum_Componentlayoutcard_Style {
+  ImageBottom = 'image_bottom',
+  ImageFull = 'image_full',
+  ImageTop = 'image_top'
+}
+
+export enum Enum_Componentlayoutcard_Theme_Color {
+  Blue = 'blue',
+  Yellow = 'yellow'
+}
+
 export enum Enum_Componentlayoutheader_Type {
   Hero_1 = 'hero_1',
   Normal = 'normal'
@@ -339,6 +360,11 @@ export enum Enum_Componentlayoutimagegrid_Style {
   LandscapeXPortrait = 'landscape_x_portrait',
   PortraitXLandscape = 'portrait_x_landscape',
   PortraitXPortrait = 'portrait_x_portrait'
+}
+
+export enum Enum_Componentutilitycontactform_Type {
+  Basic = 'basic',
+  Expanded = 'expanded'
 }
 
 export enum Enum_Contentreleasesreleaseaction_Type {
@@ -426,7 +452,7 @@ export type FooterNavigationRelationResponseCollection = {
   data: Array<FooterNavigationEntity>;
 };
 
-export type GenericMorph = ComponentLayoutButton | ComponentLayoutCard | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutHeading | ComponentLayoutImageGrid | ComponentLayoutLink | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaVideo | ComponentUtilitySeo | ContentReleasesRelease | ContentReleasesReleaseAction | FooterNavigation | I18NLocale | Page | PrimaryNavigation | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentLayoutButton | ComponentLayoutCard | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutHeading | ComponentLayoutImageGrid | ComponentLayoutLink | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaVideo | ComponentUtilityContactForm | ComponentUtilitySeo | ContentReleasesRelease | ContentReleasesReleaseAction | FooterNavigation | I18NLocale | Page | PrimaryNavigation | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -541,6 +567,7 @@ export type JsonFilterInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
   createContentReleasesRelease?: Maybe<ContentReleasesReleaseEntityResponse>;
   createContentReleasesReleaseAction?: Maybe<ContentReleasesReleaseActionEntityResponse>;
@@ -549,7 +576,9 @@ export type Mutation = {
   createPrimaryNavigationLocalization?: Maybe<PrimaryNavigationEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
+  /** Create a new role */
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
+  /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteContentReleasesRelease?: Maybe<ContentReleasesReleaseEntityResponse>;
   deleteContentReleasesReleaseAction?: Maybe<ContentReleasesReleaseActionEntityResponse>;
@@ -558,14 +587,20 @@ export type Mutation = {
   deletePrimaryNavigation?: Maybe<PrimaryNavigationEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
+  /** Delete an existing role */
   deleteUsersPermissionsRole?: Maybe<UsersPermissionsDeleteRolePayload>;
+  /** Delete an existing user */
   deleteUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  /** Confirm an email users email address */
   emailConfirmation?: Maybe<UsersPermissionsLoginPayload>;
+  /** Request a reset password token */
   forgotPassword?: Maybe<UsersPermissionsPasswordPayload>;
   login: UsersPermissionsLoginPayload;
   multipleUpload: Array<Maybe<UploadFileEntityResponse>>;
+  /** Register a user */
   register: UsersPermissionsLoginPayload;
   removeFile?: Maybe<UploadFileEntityResponse>;
+  /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateContentReleasesRelease?: Maybe<ContentReleasesReleaseEntityResponse>;
   updateContentReleasesReleaseAction?: Maybe<ContentReleasesReleaseActionEntityResponse>;
@@ -575,7 +610,9 @@ export type Mutation = {
   updatePrimaryNavigation?: Maybe<PrimaryNavigationEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
+  /** Update an existing role */
   updateUsersPermissionsRole?: Maybe<UsersPermissionsUpdateRolePayload>;
+  /** Update an existing user */
   updateUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   upload: UploadFileEntityResponse;
 };
@@ -801,7 +838,7 @@ export type Page = {
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
-export type PageContentDynamicZone = ComponentLayoutCard | ComponentLayoutHeading | ComponentLayoutImageGrid | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaVideo | Error;
+export type PageContentDynamicZone = ComponentLayoutCard | ComponentLayoutHeading | ComponentLayoutImageGrid | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaVideo | ComponentUtilityContactForm | Error;
 
 export type PageEntity = {
   __typename?: 'PageEntity';

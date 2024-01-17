@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import { FooterNavigation, PrimaryNavigation } from '@strapi/graphql-types'
+import { FooterNavigation, PrimaryNavigation } from '@strapi/types'
 import client from '@strapi/client'
 
 const LINK_ATTRIBUTES = gql`

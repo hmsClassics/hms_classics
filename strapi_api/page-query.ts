@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client'
-import { Page } from '@strapi/graphql-types'
+import { Page } from '@strapi/types'
 import client from '@strapi/client'
 
 const MEDIA_ATTRIBUTES_FRAGMENT = gql`

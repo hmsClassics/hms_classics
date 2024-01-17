@@ -1,0 +1,14 @@
+@import '@styles/mixins';
+
+.card {
+  position: relative;
+  z-index: 5;
+  background: var(--gradient-dark);
+  color: var(--color-white);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    @include container();
+  }
+}

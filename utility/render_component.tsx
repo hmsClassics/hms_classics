@@ -1,7 +1,9 @@
-import { PageContentDynamicZone } from '@strapi/graphql-types'
+import { PageContentDynamicZone } from '@strapi/types'
 import Img from '@components/Image'
 import MediaGrid from '@components/MediaGrids'
 import TextBlock from '@components/TextBlock'
+import Card from '@/components/Card'
+import ContactForm from '@/components/ContactForm'
 
 type ComponentTypeMap = {
   [key: string]: React.ComponentType<any>
@@ -11,6 +13,8 @@ const COMPONENT_MAP: ComponentTypeMap = {
   ComponentLayoutImageGrid: MediaGrid,
   ComponentMediaImage: Img,
   ComponentLayoutTextBlock: TextBlock,
+  ComponentLayoutCard: Card,
+  ComponentUtilityContactForm: ContactForm,
   Error: () => <div>ERROR</div>,
 }
 
@@ -29,7 +33,11 @@ const renderComponent = (componentData: PageContentDynamicZone | null) => {
       return <Component key={componentData.id} {...componentData} />
     case 'ComponentMediaImage':
       return <Component key={componentData.id} {...componentData} />
+    case 'ComponentLayoutCard':
+      return <Component key={componentData.id} {...componentData} />
     case 'ComponentLayoutTextBlock':
+      return <Component key={componentData.id} {...componentData} />
+    case 'ComponentUtilityContactForm':
       return <Component key={componentData.id} {...componentData} />
     default:
       return <div>No Component...</div>

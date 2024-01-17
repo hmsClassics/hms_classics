@@ -205,6 +205,19 @@ input JSONFilterInput {
 
 type ComponentLayoutButton {
   id: ID!
+  ButtonText: String!
+  LinkTarget: String!
+}
+
+enum ENUM_COMPONENTLAYOUTCARD_STYLE {
+  image_top
+  image_bottom
+  image_full
+}
+
+enum ENUM_COMPONENTLAYOUTCARD_THEME_COLOR {
+  yellow
+  blue
 }
 
 type ComponentLayoutCard {
@@ -213,6 +226,8 @@ type ComponentLayoutCard {
   body: String
   image: ComponentMediaImage
   button: ComponentLayoutButton
+  style: ENUM_COMPONENTLAYOUTCARD_STYLE
+  theme_color: ENUM_COMPONENTLAYOUTCARD_THEME_COLOR
 }
 
 type ComponentLayoutFooter {
@@ -332,6 +347,16 @@ type ComponentMediaVideo {
   id: ID!
   file: UploadFileEntityResponse
   description: String
+}
+
+enum ENUM_COMPONENTUTILITYCONTACTFORM_TYPE {
+  basic
+  expanded
+}
+
+type ComponentUtilityContactForm {
+  id: ID!
+  Type: ENUM_COMPONENTUTILITYCONTACTFORM_TYPE
 }
 
 input ComponentUtilitySeoFiltersInput {
@@ -805,6 +830,7 @@ union PageContentDynamicZone =
   | ComponentMediaVideo
   | ComponentLayoutCard
   | ComponentLayoutImageGrid
+  | ComponentUtilityContactForm
   | Error
 
 scalar PageContentDynamicZoneInput
@@ -898,6 +924,7 @@ union GenericMorph =
   | ComponentLayoutTextBlock
   | ComponentMediaImage
   | ComponentMediaVideo
+  | ComponentUtilityContactForm
   | ComponentUtilitySeo
   | UploadFile
   | UploadFolder

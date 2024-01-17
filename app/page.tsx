@@ -1,7 +1,7 @@
 import { type Metadata } from 'next/types'
 
 import { getPage } from '@strapi/page-query'
-import { Page } from '@strapi/graphql-types'
+import { Page } from '@strapi/types'
 import renderComponent from '@utility/render_component'
 import Header from '@components/Header'
 import styles from '@styles/page.module.scss'
@@ -45,7 +45,6 @@ export default async function Page() {
       <main className={styles.main}>
         <div className={styles.content_wrapper}>
           {pageContent && pageContent.map(renderComponent)}
-          <ContactForm />
         </div>
       </main>
     </>

@@ -2,7 +2,7 @@ import type { CodegenConfig } from '@graphql-codegen/cli'
 
 const config: CodegenConfig = {
   overwrite: true,
-  schema: 'strapi_api/schema.graphql',
+  schema: 'http://localhost:1337/graphql',
   generates: {
     'strapi_api/graphql-types.ts': {
       plugins: [
