@@ -61,9 +61,39 @@
     }
   }
 
+  &__menu {
+    display: flex;
+    width: 100vw;
+    background-repeat: no-repeat;
+    font-weight: 500;
+  }
+
+  &__menu_icon {
+    position: absolute;
+    width: 2.375rem;
+    height: 2.375rem;
+    opacity: 1;
+
+    &__middle {
+      fill: var(--color-fl-gr-yellow);
+    }
+    &__top_bottom {
+      fill: var(--color-dark-grey);
+    }
+  }
+
+  &--hero {
+    .nav__menu_icon {
+      &__top_bottom {
+        fill: var(--color-off-white);
+      }
+    }
+  }
+
   &__close_icon {
     position: absolute;
     right: -3em;
+    top: 0.25rem;
     height: 2rem;
     width: 2rem;
     opacity: 0;
@@ -83,47 +113,10 @@
     }
   }
 
-  &__menu {
-    display: flex;
-    width: 100vw;
-    background-repeat: no-repeat;
-    font-weight: 500;
-  }
-
-  &__menu_icon {
-    position: absolute;
-    width: 2rem;
-    opacity: 1;
-
-    path {
-      fill: none;
-      stroke-width: 7;
-      stroke-miterlimit: 10;
-      transform: scaleX(1);
-      transition: transform 0.12s ease-in-out;
-    }
-
-    &__top {
-      stroke: #262022;
-    }
-    &__middle {
-      stroke: #ef0027;
-    }
-    &__bottom {
-      stroke: #ffd500;
-    }
-
-    &:hover {
-      path {
-        transform: scaleX(1.3);
-      }
-    }
-  }
-
   &__toggle {
     position: absolute;
-    width: 2rem;
-    height: 2rem;
+    width: 2.375rem;
+    height: 2.375rem;
     cursor: pointer;
     margin: 0;
     top: calc(var(--header-height) / 2 - (var(--nav-button-height) / 2));
@@ -152,7 +145,7 @@
         & ~ .nav__toggle {
           .nav__close_icon {
             opacity: 1;
-            right: 0;
+            right: 0.15rem;
           }
           .nav__menu_icon {
             opacity: 0;

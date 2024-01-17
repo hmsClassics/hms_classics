@@ -29,12 +29,20 @@ export async function PrimaryNav({ hero }: PrimaryNavProps) {
       <label htmlFor="nav__checkbox" className={styles.nav__toggle}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          xmlSpace="preserve"
-          className={styles.nav__menu_icon}
-          viewBox="0 0 32 32">
-          <path d="M16 4h16" className={styles.nav__menu_icon__top} />
-          <path d="M6 16h26" className={styles.nav__menu_icon__middle} />
-          <path d="M0 28h32" className={styles.nav__menu_icon__bottom} />
+          width="38"
+          height="38"
+          fill="none"
+          className={styles.nav__menu_icon}>
+          <path
+            className={styles.nav__menu_icon__middle}
+            fill="#ECD686"
+            d="M9 25.97 25.97 9l2.83 2.829-16.971 16.97z"
+          />
+          <path
+            className={styles.nav__menu_icon__top_bottom}
+            fill="#262022"
+            d="M18 25.97 34.97 9l2.829 2.828L20.829 28.8 18 25.971ZM0 25.97 16.97 9l2.83 2.829-16.971 16.97z"
+          />
         </svg>
 
         <svg
