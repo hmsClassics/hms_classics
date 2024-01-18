@@ -53,6 +53,24 @@ const HEADING_ATTRIBUTES = gql`
   }
 `
 
+const CARD_ATTRIBUTES = gql`
+  fragment cardAttributes on ComponentLayoutCard {
+    body
+    button {
+      button_text
+      link_target
+    }
+    id
+    image {
+      ...imageAttributes
+    }
+    title {
+      ...headingAttributes
+    }
+    style
+  }
+`
+
 const HEADER = gql`
   fragment header on Page {
     headerType {
@@ -106,6 +124,21 @@ export async function getPage(slug: string): Promise<Page> {
                 }
                 ... on ComponentLayoutImageGrid {
                   ...imageGridAttributes
+                }
+                ... on ComponentLayoutCard {
+                  body
+                  id
+                  display_style
+                  title {
+                    ...headingAttributes
+                  }
+                  image {
+                    ...imageAttributes
+                  }
+                  button {
+                    button_text
+                    link_target
+                  }
                 }
               }
             }
