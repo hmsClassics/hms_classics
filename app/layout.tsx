@@ -2,7 +2,7 @@ import cx from 'classnames'
 import { Jost, Montserrat } from 'next/font/google'
 import type { Metadata } from 'next'
 
-import Footer from '../components/Footer'
+import Footer from '@components/Footer'
 import './globals.scss'
 
 const jost = Jost({ subsets: ['latin'], variable: '--font-jost' })

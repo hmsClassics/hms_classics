@@ -169,9 +169,8 @@ export type ComponentMediaImageFiltersInput = {
 
 export type ComponentMediaVideo = {
   __typename?: 'ComponentMediaVideo';
-  description?: Maybe<Scalars['String']['output']>;
-  file?: Maybe<UploadFileEntityResponse>;
   id: Scalars['ID']['output'];
+  wistia_oEmbed_url?: Maybe<Scalars['String']['output']>;
 };
 
 export type ComponentUtilityContactForm = {
@@ -332,6 +331,8 @@ export type DateTimeFilterInput = {
 export enum Enum_Componentlayoutcard_Display_Style {
   ImageBottom = 'image_bottom',
   ImageFull = 'image_full',
+  ImageLeft = 'image_left',
+  ImageRight = 'image_right',
   ImageTop = 'image_top'
 }
 

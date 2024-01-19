@@ -122,6 +122,9 @@ export async function getPage(slug: string): Promise<Page> {
                 ... on ComponentMediaImage {
                   ...imageAttributes
                 }
+                ... on ComponentMediaVideo {
+                  wistia_oEmbed_url
+                }
                 ... on ComponentLayoutImageGrid {
                   ...imageGridAttributes
                 }

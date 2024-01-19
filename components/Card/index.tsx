@@ -14,18 +14,28 @@ export default function Card({
   title,
   display_style,
 }: ComponentLayoutCard) {
-  console.log('Card', { body, button, id, image, title, display_style })
+  const cardClasses = cx(styles.card, {
+    [styles['card--image-bottom']]: display_style === 'image_bottom',
+    [styles['card--image-top']]: display_style === 'image_top',
+    [styles['card--image-left']]: display_style === 'image_left',
+    [styles['card--image-right']]: display_style === 'image_right',
+    [styles['card--full']]: display_style === 'image_full',
+  })
   const cardImageClasses = cx(styles.card__image, {
     [styles['card__image--bottom']]: display_style === 'image_bottom',
     [styles['card__image--top']]: display_style === 'image_top',
+    [styles['card__image--left']]: display_style === 'image_left',
+    [styles['card__image--right']]: display_style === 'image_right',
   })
   const cardContentClasses = cx(styles.card__content, {
-    [styles['card__content--image_bottom']]: display_style === 'image_bottom',
-    [styles['card__content--image_top']]: display_style === 'image_top',
+    [styles['card__content--image-bottom']]: display_style === 'image_bottom',
+    [styles['card__content--image-top']]: display_style === 'image_top',
+    [styles['card__content--image-right']]: display_style === 'image_right',
+    [styles['card__content--image-left']]: display_style === 'image_left',
   })
 
   return (
-    <div className={styles.card}>
+    <div className={cardClasses}>
       <div className={cardContentClasses}>
         <div className={styles.card__body}>
           {title && (
