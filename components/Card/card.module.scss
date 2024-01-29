@@ -7,10 +7,6 @@
   background: var(--color-off-white);
   color: var(--color-dark-grey);
 
-  @media only screen and (min-width: $medium) {
-    min-height: 80vh;
-  }
-
   &--image-right,
   &--image-left {
     display: grid;
@@ -47,10 +43,6 @@
 
   &__content {
     grid-area: content;
-
-    @media only screen and (min-width: $medium) {
-      min-height: 80vh;
-    }
 
     &--image-bottom,
     &--image-top {
@@ -103,10 +95,6 @@
     }
 
     &--right {
-    }
-
-    > div {
-      height: 100%;
     }
   }
 }
