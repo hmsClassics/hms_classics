@@ -1,15 +1,12 @@
 import cx from 'classnames'
-import { Jost, Montserrat } from 'next/font/google'
+import { Maven_Pro } from 'next/font/google'
 import type { Metadata } from 'next'
 
 import Footer from '@components/Footer'
 import './globals.scss'
+import Header from '@/components/Header'
 
-const jost = Jost({ subsets: ['latin'], variable: '--font-jost' })
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  variable: '--font-montserrat',
-})
+const maven = Maven_Pro({ subsets: ['latin'], variable: '--font-maven-pro' })
 
 export const metadata: Metadata = {
   icons: [
@@ -41,7 +38,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cx(jost.variable, montserrat.variable)}>
+      <body className={cx(maven.className)}>
         {children}
         <Footer />
       </body>

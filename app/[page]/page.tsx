@@ -6,7 +6,7 @@ import renderComponent from '@utility/render_component'
 import Header from '@components/Header'
 import styles from '@styles/page.module.scss'
 import { serializedUploadFileEntityResponse } from '@utility/component_serializer'
-import { PageProps } from '@/.next/types/app/[page]/page'
+import { PageProps } from '@/.next/types/app/page'
 
 export const generateMetadata = async ({
   params,

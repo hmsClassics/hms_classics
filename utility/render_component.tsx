@@ -5,6 +5,7 @@ import TextBlock from '@components/TextBlock'
 import Card from '@/components/Card'
 import ContactForm from '@/components/ContactForm'
 import Video from '@/components/Video'
+import ContentBlock from '@/components/ContentBlock'
 
 type ComponentTypeMap = {
   [key: string]: React.ComponentType<any>
@@ -15,7 +16,7 @@ const COMPONENT_MAP: ComponentTypeMap = {
   ComponentMediaImage: Img,
   ComponentMediaVideo: Video,
   ComponentLayoutTextBlock: TextBlock,
-  ComponentLayoutCard: Card,
+  ComponentLayoutContentBlock: ContentBlock,
   ComponentUtilityContactForm: ContactForm,
   Error: () => <div>ERROR</div>,
 }
@@ -37,7 +38,7 @@ const renderComponent = (componentData: PageContentDynamicZone | null) => {
       return <Component key={componentData.id} {...componentData} />
     case 'ComponentMediaVideo':
       return <Component key={componentData.id} {...componentData} />
-    case 'ComponentLayoutCard':
+    case 'ComponentLayoutContentBlock':
       return <Component key={componentData.id} {...componentData} />
     case 'ComponentLayoutTextBlock':
       return <Component key={componentData.id} {...componentData} />

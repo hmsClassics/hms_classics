@@ -16,7 +16,7 @@
       'image';
   }
 
-  @media only screen and (min-width: $medium) {
+  @include min-width($medium) {
     grid-template-columns: 1fr 1fr;
 
     &--image-right {
@@ -28,13 +28,9 @@
     }
   }
 
-  &:first-child {
-    margin-top: calc(var(--content-padding) * -1);
-  }
-
   &--full {
     width: 100vw;
-    margin: 0 calc(var(--content-padding) * -1);
+    margin: 0 calc(var(--content-spacing) * -1);
 
     & .card__content {
       max-width: 100%;
@@ -64,7 +60,7 @@
     }
   }
 
-  &__body {
+  &__title {
     padding: 0;
     max-width: 75%;
   }

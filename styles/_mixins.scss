@@ -1,12 +1,19 @@
 @mixin container {
   width: 100%;
-  max-width: var(--max-content-width);
-  margin: 0;
-  padding: var(--content-padding);
+
+  & + & {
+    margin-top: var(--content-spacing);
+  }
 }
 
 @mixin landscape {
   @media only screen and (min-aspect-ratio: 4/3) and (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin min-width($width) {
+  @media only screen and (min-width: $width) {
     @content;
   }
 }

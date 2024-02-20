@@ -1,3 +1,4 @@
+import cx from 'classnames'
 import { type Metadata } from 'next/types'
 
 import { getPage } from '@strapi/page-query'
@@ -7,6 +8,7 @@ import Header from '@components/Header'
 import styles from '@styles/page.module.scss'
 import { serializedUploadFileEntityResponse } from '@utility/component_serializer'
 import ContactForm from '@/components/ContactForm'
+import ContentBlock from '@/components/ContentBlock'
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const data: Page = await getPage('home')
@@ -38,6 +40,23 @@ export const generateMetadata = async (): Promise<Metadata> => {
 export default async function Page() {
   const data: Page = await getPage('home')
   const pageContent = data.content
+
+  const contentBlockImgLeftClasses = cx(
+    styles.contentBlock,
+    styles['contentBlock--image-left']
+  )
+  const contentBlockImgRightClasses = cx(
+    styles.contentBlock,
+    styles['contentBlock--image-right']
+  )
+  const contentFeaturedBlockImgRightClasses = cx(
+    styles.contentBlock,
+    styles['contentBlock--featured-image-right']
+  )
+  const contentFeaturedBlockImgLeftClasses = cx(
+    styles.contentBlock,
+    styles['contentBlock--featured-image-left']
+  )
 
   return (
     <>

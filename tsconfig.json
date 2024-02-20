@@ -24,7 +24,8 @@
       "@styles/*": ["./styles/*"],
       "@strapi/*": ["./strapi_api/*"],
       "@lib/*": ["./lib/*"],
-      "@utility/*": ["./utility/*"]
+      "@utility/*": ["./utility/*"],
+      "@fonts/*": ["./fonts/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
