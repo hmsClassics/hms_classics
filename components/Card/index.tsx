@@ -12,32 +12,25 @@ export default function Card({
   id,
   image,
   title,
-  display_style,
+  image_focus_style,
+  layout_variant,
+  dynamic_swatch_color,
 }: ComponentLayoutCard) {
   const cardClasses = cx(styles.card, {
-    [styles['card--image-bottom']]: display_style === 'image_bottom',
-    [styles['card--image-top']]: display_style === 'image_top',
-    [styles['card--image-left']]: display_style === 'image_left',
-    [styles['card--image-right']]: display_style === 'image_right',
-    [styles['card--full']]: display_style === 'image_full',
+    [styles['card--image-left']]: layout_variant === 'image_left',
+    [styles['card--image-right']]: layout_variant === 'image_right',
   })
   const cardImageClasses = cx(styles.card__image, {
-    [styles['card__image--bottom']]: display_style === 'image_bottom',
-    [styles['card__image--top']]: display_style === 'image_top',
-    [styles['card__image--left']]: display_style === 'image_left',
-    [styles['card__image--right']]: display_style === 'image_right',
-  })
-  const cardContentClasses = cx(styles.card__content, {
-    [styles['card__content--image-bottom']]: display_style === 'image_bottom',
-    [styles['card__content--image-top']]: display_style === 'image_top',
-    [styles['card__content--image-right']]: display_style === 'image_right',
-    [styles['card__content--image-left']]: display_style === 'image_left',
+    [styles['card__image--bottom']]: image_focus_style === 'bottom',
+    [styles['card__image--top']]: image_focus_style === 'top',
+    [styles['card__image--left']]: image_focus_style === 'left',
+    [styles['card__image--right']]: image_focus_style === 'right',
   })
 
   return (
     <div className={cardClasses}>
-      <div className={cardContentClasses}>
-        <div className={styles.card__body}>
+      <div className={styles.card__content}>
+        <div className={styles.card__title}>
           {title && (
             <Heading text={title.text} level={title.level} id={title.id} />
           )}

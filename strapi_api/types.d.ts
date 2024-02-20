@@ -52,15 +52,31 @@ export type ComponentLayoutButton = {
   link_target: Scalars['String']['output'];
 };
 
-export type ComponentLayoutCard = {
-  __typename?: 'ComponentLayoutCard';
-  body?: Maybe<Scalars['String']['output']>;
+export type ComponentLayoutContentBlock = {
+  __typename?: 'ComponentLayoutContentBlock';
   button?: Maybe<ComponentLayoutButton>;
-  display_style?: Maybe<Enum_Componentlayoutcard_Display_Style>;
+  content: Scalars['JSON']['output'];
+  dynamic_swatch_colors: Scalars['Boolean']['output'];
   id: Scalars['ID']['output'];
-  image?: Maybe<ComponentMediaImage>;
-  theme_color?: Maybe<Enum_Componentlayoutcard_Theme_Color>;
-  title?: Maybe<ComponentLayoutHeading>;
+  image: ComponentMediaImage;
+  image_alignment: Enum_Componentlayoutcontentblock_Image_Alignment;
+  layout: Enum_Componentlayoutcontentblock_Layout;
+  main_heading: Scalars['String']['output'];
+  sub_heading?: Maybe<Scalars['String']['output']>;
+};
+
+export type ComponentLayoutFeaturedContentBlock = {
+  __typename?: 'ComponentLayoutFeaturedContentBlock';
+  button?: Maybe<ComponentLayoutButton>;
+  content: Scalars['JSON']['output'];
+  dynamic_swatch_colors: Scalars['Boolean']['output'];
+  id: Scalars['ID']['output'];
+  image_1: ComponentMediaImage;
+  image_2: ComponentMediaImage;
+  image_alignment: Enum_Componentlayoutfeaturedcontentblock_Image_Alignment;
+  layout: Enum_Componentlayoutfeaturedcontentblock_Layout;
+  main_heading: Scalars['String']['output'];
+  sub_heading?: Maybe<Scalars['String']['output']>;
 };
 
 export type ComponentLayoutFooter = {
@@ -102,7 +118,6 @@ export type ComponentLayoutHeaderInput = {
 export type ComponentLayoutHeading = {
   __typename?: 'ComponentLayoutHeading';
   id: Scalars['ID']['output'];
-  level: Enum_Componentlayoutheading_Level;
   text: Scalars['String']['output'];
 };
 
@@ -148,7 +163,6 @@ export type ComponentLayoutTextBlock = {
   __typename?: 'ComponentLayoutTextBlock';
   content?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
-  title?: Maybe<ComponentLayoutHeading>;
 };
 
 export type ComponentMediaImage = {
@@ -208,6 +222,8 @@ export type ContentReleasesRelease = {
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   name: Scalars['String']['output'];
   releasedAt?: Maybe<Scalars['DateTime']['output']>;
+  scheduledAt?: Maybe<Scalars['DateTime']['output']>;
+  timezone?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
@@ -223,6 +239,7 @@ export type ContentReleasesReleaseAction = {
   contentType: Scalars['String']['output'];
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   entry?: Maybe<GenericMorph>;
+  locale?: Maybe<Scalars['String']['output']>;
   release?: Maybe<ContentReleasesReleaseEntityResponse>;
   type: Enum_Contentreleasesreleaseaction_Type;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -250,6 +267,7 @@ export type ContentReleasesReleaseActionFiltersInput = {
   contentType?: InputMaybe<StringFilterInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   id?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ContentReleasesReleaseActionFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ContentReleasesReleaseActionFiltersInput>>>;
   release?: InputMaybe<ContentReleasesReleaseFiltersInput>;
@@ -259,6 +277,7 @@ export type ContentReleasesReleaseActionFiltersInput = {
 
 export type ContentReleasesReleaseActionInput = {
   contentType?: InputMaybe<Scalars['String']['input']>;
+  locale?: InputMaybe<Scalars['String']['input']>;
   release?: InputMaybe<Scalars['ID']['input']>;
   type?: InputMaybe<Enum_Contentreleasesreleaseaction_Type>;
 };
@@ -294,6 +313,8 @@ export type ContentReleasesReleaseFiltersInput = {
   not?: InputMaybe<ContentReleasesReleaseFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ContentReleasesReleaseFiltersInput>>>;
   releasedAt?: InputMaybe<DateTimeFilterInput>;
+  scheduledAt?: InputMaybe<DateTimeFilterInput>;
+  timezone?: InputMaybe<StringFilterInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -301,6 +322,8 @@ export type ContentReleasesReleaseInput = {
   actions?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   name?: InputMaybe<Scalars['String']['input']>;
   releasedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  scheduledAt?: InputMaybe<Scalars['DateTime']['input']>;
+  timezone?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DateTimeFilterInput = {
@@ -328,31 +351,29 @@ export type DateTimeFilterInput = {
   startsWith?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export enum Enum_Componentlayoutcard_Display_Style {
-  ImageBottom = 'image_bottom',
-  ImageFull = 'image_full',
-  ImageLeft = 'image_left',
-  ImageRight = 'image_right',
-  ImageTop = 'image_top'
+export enum Enum_Componentlayoutcontentblock_Image_Alignment {
+  Left = 'left',
+  Right = 'right'
 }
 
-export enum Enum_Componentlayoutcard_Theme_Color {
-  Blue = 'blue',
-  Yellow = 'yellow'
+export enum Enum_Componentlayoutcontentblock_Layout {
+  ImageLeft = 'image_left',
+  ImageRight = 'image_right'
+}
+
+export enum Enum_Componentlayoutfeaturedcontentblock_Image_Alignment {
+  Left = 'left',
+  Right = 'right'
+}
+
+export enum Enum_Componentlayoutfeaturedcontentblock_Layout {
+  ImageLeft = 'image_left',
+  ImageRight = 'image_right'
 }
 
 export enum Enum_Componentlayoutheader_Type {
   Hero_1 = 'hero_1',
   Normal = 'normal'
-}
-
-export enum Enum_Componentlayoutheading_Level {
-  H1 = 'h1',
-  H2 = 'h2',
-  H3 = 'h3',
-  H4 = 'h4',
-  H5 = 'h5',
-  H6 = 'h6'
 }
 
 export enum Enum_Componentlayoutimagegrid_Style {
@@ -453,7 +474,7 @@ export type FooterNavigationRelationResponseCollection = {
   data: Array<FooterNavigationEntity>;
 };
 
-export type GenericMorph = ComponentLayoutButton | ComponentLayoutCard | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutHeading | ComponentLayoutImageGrid | ComponentLayoutLink | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaVideo | ComponentUtilityContactForm | ComponentUtilitySeo | ContentReleasesRelease | ContentReleasesReleaseAction | FooterNavigation | I18NLocale | Page | PrimaryNavigation | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentLayoutButton | ComponentLayoutContentBlock | ComponentLayoutFeaturedContentBlock | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutHeading | ComponentLayoutImageGrid | ComponentLayoutLink | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaVideo | ComponentUtilityContactForm | ComponentUtilitySeo | ContentReleasesRelease | ContentReleasesReleaseAction | FooterNavigation | I18NLocale | Page | PrimaryNavigation | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -839,7 +860,7 @@ export type Page = {
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
-export type PageContentDynamicZone = ComponentLayoutCard | ComponentLayoutHeading | ComponentLayoutImageGrid | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaVideo | ComponentUtilityContactForm | Error;
+export type PageContentDynamicZone = ComponentLayoutContentBlock | ComponentLayoutFeaturedContentBlock | ComponentLayoutHeading | ComponentLayoutImageGrid | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaVideo | ComponentUtilityContactForm | Error;
 
 export type PageEntity = {
   __typename?: 'PageEntity';

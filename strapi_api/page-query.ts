@@ -17,15 +17,6 @@ const MEDIA_ATTRIBUTES_FRAGMENT = gql`
   }
 `
 
-const IMAGE_GRID_ATTRIBUTES = gql`
-  fragment imageGridAttributes on ComponentLayoutImageGrid {
-    images {
-      ...imageAttributes
-    }
-    style
-  }
-`
-
 const IMAGE_ATTRIBUTES = gql`
   fragment imageAttributes on ComponentMediaImage {
     id
@@ -37,35 +28,10 @@ const IMAGE_ATTRIBUTES = gql`
   }
 `
 
-const TEXT_BLOCK_ATTRIBUTES = gql`
-  fragment textBlockAttributes on ComponentLayoutTextBlock {
-    title {
-      ...headingAttributes
-    }
-    content
-  }
-`
-
-const HEADING_ATTRIBUTES = gql`
-  fragment headingAttributes on ComponentLayoutHeading {
-    text
-    level
-  }
-`
-
-const CARD_ATTRIBUTES = gql`
-  fragment cardAttributes on ComponentLayoutCard {
-    body
-    button {
-      button_text
-      link_target
-    }
-    id
-    image {
+const IMAGE_GRID_ATTRIBUTES = gql`
+  fragment imageGridAttributes on ComponentLayoutImageGrid {
+    images {
       ...imageAttributes
-    }
-    title {
-      ...headingAttributes
     }
     style
   }
@@ -80,6 +46,25 @@ const HEADER = gql`
         ...mediaAttributes
       }
     }
+  }
+`
+
+const LAYOUT_BLOCK_ATTRIBUTES = gql`
+  fragment layoutBlockAttributes on ComponentLayoutContentBlock {
+    id
+    main_heading
+    sub_heading
+    content
+    button {
+      button_text
+      link_target
+    }
+    image {
+      ...imageAttributes
+    }
+    image_alignment
+    dynamic_swatch_colors
+    layout
   }
 `
 
@@ -100,13 +85,12 @@ export async function getPage(slug: string): Promise<Page> {
 
   const { data } = await cacheBustedClient.query({
     query: gql`
-      ${MEDIA_ATTRIBUTES_FRAGMENT}
-      ${HEADING_ATTRIBUTES}
-      ${HEADER}
       ${PAGE_SEO_FRAGMENT}
-      ${TEXT_BLOCK_ATTRIBUTES}
+      ${HEADER}
+      ${MEDIA_ATTRIBUTES_FRAGMENT}
       ${IMAGE_ATTRIBUTES}
       ${IMAGE_GRID_ATTRIBUTES}
+      ${LAYOUT_BLOCK_ATTRIBUTES}
 
       query GetPage($slug: String!) {
         pages(filters: { slug: { eq: $slug } }) {
@@ -116,9 +100,6 @@ export async function getPage(slug: string): Promise<Page> {
               ...header
               ...pageSEO
               content {
-                ... on ComponentLayoutTextBlock {
-                  ...textBlockAttributes
-                }
                 ... on ComponentMediaImage {
                   ...imageAttributes
                 }
@@ -128,20 +109,8 @@ export async function getPage(slug: string): Promise<Page> {
                 ... on ComponentLayoutImageGrid {
                   ...imageGridAttributes
                 }
-                ... on ComponentLayoutCard {
-                  body
-                  id
-                  display_style
-                  title {
-                    ...headingAttributes
-                  }
-                  image {
-                    ...imageAttributes
-                  }
-                  button {
-                    button_text
-                    link_target
-                  }
+                ... on ComponentLayoutContentBlock {
+                  ...layoutBlockAttributes
                 }
               }
             }

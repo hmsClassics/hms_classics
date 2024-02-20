@@ -1,14 +1,17 @@
 @import '@styles/mixins';
 
 .footer {
-  position: relative;
-  z-index: 5;
-  background: var(--gradient-dark);
-  color: var(--color-white);
+  margin-top: var(--content-spacing);
+  border-top: 1px solid var(--color-light-grey);
+  background: var(--color-off-white);
+  color: var(--color-dark-grey);
 }
 
 .footer__content {
   display: flex;
   flex-direction: column;
   @include container();
+  padding: var(--content-spacing);
+  max-width: var(--max-content-width);
+  margin: 0 auto;
 }

@@ -1,16 +1,18 @@
 @import '@styles/typography';
 @import '@styles/variables';
+@import '@styles/mixins';
 
 :root {
-  --content-padding: 1.5rem;
+  --header-height: 5.75rem;
+  --max-content-width: 1600px;
+
+  --content-spacing: 2.25rem;
   --content-section-gap: 1.5rem;
+  --content-gap: 2.25rem;
   --gutter: 0.5rem;
   --media-grid-gap: 0.5rem;
 
-  --header-height: 5.75rem;
-  --max-content-width: 1200px;
-
-  --color-dark-grey: #262022;
+  --color-dark-grey: #2b2b23;
   --color-light-grey: #38382e;
   --color-border-light-grey: #acacac;
   --color-white: #fff;
@@ -37,9 +39,13 @@
   );
 }
 
-@media only screen and (min-width: $medium) {
+@include min-width($large) {
   :root {
-    --content-padding: 3rem;
+    --content-spacing: 3.25rem;
+    --content-section-gap: 1.5rem;
+    --content-gap: 3.25rem;
+    --gutter: 0.5rem;
+    --media-grid-gap: 0.5rem;
   }
 }
 
@@ -61,7 +67,8 @@ body {
   overflow-x: hidden;
   font-size: $type-base-size;
   line-height: 1.5;
-  background-color: var(--color-dark-grey);
+  background-color: var(--color-off-white);
+  font-family: var(--font-maven-pro);
 }
 
 body {

@@ -1,6 +1,6 @@
 'use client'
 
-import styles from './text_block.module.scss'
+import styles from './text_blocks_renderer.module.scss'
 
 import { BlocksRenderer } from '@strapi/blocks-react-renderer'
 import Link from 'next/link'
@@ -8,7 +8,7 @@ import { ComponentLayoutTextBlock } from '@strapi/types'
 import P from '@components/Typography/Paragraph'
 import { H1, H2, H3, H4 } from '@components/Typography/Headings'
 
-const TextBlock = (props: ComponentLayoutTextBlock) => {
+const TextBlocksRenderer = (props: Partial<ComponentLayoutTextBlock>) => {
   return (
     <div className={styles.text_block}>
       <BlocksRenderer
@@ -38,4 +38,4 @@ const TextBlock = (props: ComponentLayoutTextBlock) => {
   )
 }
 
-export default TextBlock
+export default TextBlocksRenderer
