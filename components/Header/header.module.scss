@@ -38,16 +38,21 @@
     padding: var(--content-spacing) 0;
     border-bottom: 1px solid var(--color-border-light-grey);
 
-    h1 {
+    h2 {
       height: 100%;
       margin: 0 auto 0 0;
       position: relative;
       z-index: 7;
+
+      img {
+        height: 100%;
+        width: auto;
+      }
     }
 
     @media only screen and (min-width: $medium) {
       margin: 0 0 0 var(--content-spacing);
-      padding: calc(var(--content-spacing) / 2) 0;
+      padding: 1.875rem 0;
       width: calc(100% - (var(--content-spacing) * 2));
     }
 
@@ -83,7 +88,7 @@
     margin: 0;
     z-index: 5;
 
-    h2 {
+    h1 {
       font-size: clamp(2rem, 8vw, 5.5rem);
       text-transform: uppercase;
       max-width: 80%;

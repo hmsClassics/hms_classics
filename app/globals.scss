@@ -41,6 +41,12 @@
   );
 }
 
+@include min-width($medium) {
+  :root {
+    --header-height: 8.25rem;
+  }
+}
+
 @include min-width($large) {
   :root {
     --content-spacing: 3.125rem;
