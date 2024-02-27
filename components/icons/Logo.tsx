@@ -5,7 +5,7 @@ type LogoProps = {
   tone?: 'light' | 'dark'
 }
 
-export default function Home({ tone = 'light' }: LogoProps) {
+export default function Logo({ tone = 'light' }: LogoProps) {
   const logoStyles = cx(styles.logo, {
     [styles['logo--light']]: tone === 'light',
     [styles['logo--dark']]: tone === 'dark',

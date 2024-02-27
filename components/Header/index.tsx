@@ -3,10 +3,10 @@ import cx from 'classnames'
 import Link from 'next/link'
 import { PrimaryNav } from '@components/Navigation'
 import styles from './header.module.scss'
-import Logo from '@components/icons/Logo'
 import { ComponentLayoutHeader } from '@strapi/types'
 import { serializedUploadFileEntityResponse } from '@utility/component_serializer'
 import Image from 'next/image'
+import RasterLogo from '../icons/RasterLogo'
 
 export default function Header({
   heroTitle,
@@ -27,11 +27,11 @@ export default function Header({
   return (
     <header className={headerStyles}>
       <div className={styles.header__content}>
-        <h1>
-          <Link href="/">
-            <Logo tone={hero ? 'light' : 'dark'} />
+        <h2>
+          <Link title="HMS Classics" href="/">
+            <RasterLogo tone={hero ? 'light' : 'dark'} />
           </Link>
-        </h1>
+        </h2>
 
         <PrimaryNav hero={hero} />
       </div>
@@ -39,7 +39,7 @@ export default function Header({
       {hero && (
         <>
           <div className={styles.hero__title}>
-            <h2>{heroTitle}</h2>
+            <h1>{heroTitle}</h1>
           </div>
           <div className={styles.hero__background}>
             <Image
