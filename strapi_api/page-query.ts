@@ -22,6 +22,7 @@ const IMAGE_ATTRIBUTES = gql`
     id
     alt_text
     description
+    image_alignment
     file {
       ...mediaAttributes
     }
@@ -49,6 +50,35 @@ const HEADER = gql`
   }
 `
 
+const BLOCK_LAYOUT_ATTRIBUTES = gql`
+  fragment blockLayoutAttributes on ComponentUtilityLayoutOptions {
+    dynamic_swatch_colors
+    layout
+  }
+`
+
+const LAYOUT_FEATURED_BLOCK_ATTRIBUTES = gql`
+  fragment layoutFeaturedBlockAttributes on ComponentLayoutFeaturedContentBlock {
+    id
+    main_heading
+    sub_heading
+    content
+    button {
+      button_text
+      link_target
+    }
+    image_1 {
+      ...imageAttributes
+    }
+    image_2 {
+      ...imageAttributes
+    }
+    layout_options {
+      ...blockLayoutAttributes
+    }
+  }
+`
+
 const LAYOUT_BLOCK_ATTRIBUTES = gql`
   fragment layoutBlockAttributes on ComponentLayoutContentBlock {
     id
@@ -62,9 +92,9 @@ const LAYOUT_BLOCK_ATTRIBUTES = gql`
     image {
       ...imageAttributes
     }
-    image_alignment
-    dynamic_swatch_colors
-    layout
+    layout_options {
+      ...blockLayoutAttributes
+    }
   }
 `
 
@@ -90,7 +120,9 @@ export async function getPage(slug: string): Promise<Page> {
       ${MEDIA_ATTRIBUTES_FRAGMENT}
       ${IMAGE_ATTRIBUTES}
       ${IMAGE_GRID_ATTRIBUTES}
+      ${BLOCK_LAYOUT_ATTRIBUTES}
       ${LAYOUT_BLOCK_ATTRIBUTES}
+      ${LAYOUT_FEATURED_BLOCK_ATTRIBUTES}
 
       query GetPage($slug: String!) {
         pages(filters: { slug: { eq: $slug } }) {
@@ -111,6 +143,9 @@ export async function getPage(slug: string): Promise<Page> {
                 }
                 ... on ComponentLayoutContentBlock {
                   ...layoutBlockAttributes
+                }
+                ... on ComponentLayoutFeaturedContentBlock {
+                  ...layoutFeaturedBlockAttributes
                 }
               }
             }

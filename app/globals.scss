@@ -2,13 +2,15 @@
 @import '@styles/variables';
 @import '@styles/mixins';
 
+// $type-base-size: 1rem;
+
 :root {
   --header-height: 5.75rem;
   --max-content-width: 1600px;
 
-  --content-spacing: 2.25rem;
+  --content-spacing: 1.875rem;
   --content-section-gap: 1.5rem;
-  --content-gap: 2.25rem;
+  --content-gap: 1.875rem;
   --gutter: 0.5rem;
   --media-grid-gap: 0.5rem;
 
@@ -41,9 +43,9 @@
 
 @include min-width($large) {
   :root {
-    --content-spacing: 3.25rem;
+    --content-spacing: 3.125rem;
     --content-section-gap: 1.5rem;
-    --content-gap: 3.25rem;
+    --content-gap: 3.125rem;
     --gutter: 0.5rem;
     --media-grid-gap: 0.5rem;
   }

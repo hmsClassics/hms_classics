@@ -6,9 +6,10 @@
   display: grid;
   gap: var(--content-gap);
   grid-template-areas:
+    'content'
     'image_one'
-    'image_two'
-    'content';
+    'image_two';
+  padding-top: var(--content-spacing);
 
   &--image-right {
     .contentBlock__image {
@@ -17,7 +18,7 @@
 
     @include min-width($medium) {
       grid-template-areas: 'content image_one image_two';
-      grid-template-columns: auto 58%;
+      grid-template-columns: calc(42% - var(--content-spacing)) auto auto;
       padding-left: var(--content-spacing);
 
       .contentBlock__image {
@@ -28,16 +29,28 @@
 
   &--image-left {
     .contentBlock__image {
-      margin-right: var(--content-spacing);
+      &_one {
+        margin-right: var(--content-spacing);
+      }
+
+      &_two {
+        margin-left: var(--content-spacing);
+      }
     }
 
     @include min-width($medium) {
       grid-template-areas: 'image_one image_two content';
-      grid-template-columns: 58% auto 58%;
+      grid-template-columns: auto auto calc(42% - var(--content-spacing));
       padding-right: var(--content-spacing);
 
       .contentBlock__image {
-        margin-right: 0;
+        &_one {
+          margin-right: 0;
+        }
+
+        &_two {
+          margin-left: 0;
+        }
       }
     }
   }
@@ -69,8 +82,10 @@
 
   h2 {
     display: flex;
+    flex-wrap: wrap-reverse;
     align-items: baseline;
     gap: 1.33rem;
+    word-break: keep-all;
     text-transform: uppercase;
 
     &:after {
@@ -79,6 +94,7 @@
       display: block;
       width: 33%;
       max-width: 10.625rem;
+      min-width: 6.25rem;
       height: 1.5625rem;
       background: linear-gradient(
         to right,
