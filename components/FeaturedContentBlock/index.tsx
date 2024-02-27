@@ -17,11 +17,10 @@ export default function FeaturedContentBlock({
   content,
   image_1,
   image_2,
-  image_alignment,
-  layout,
-  dynamic_swatch_colors,
+  layout_options,
   button,
 }: ComponentLayoutFeaturedContentBlock) {
+  const { dynamic_swatch_colors, layout } = layout_options
   const contentBlockLayoutClasses = cx(styles.contentBlock, {
     [styles['contentBlock--image-left']]: layout === 'image_left',
     [styles['contentBlock--image-right']]: layout === 'image_right',
@@ -37,10 +36,18 @@ export default function FeaturedContentBlock({
         <TextBlocksRenderer content={content} />
       </div>
 
-      <div className={cx(styles.contentBlock__image_one, styles.contentBlock__image)}>
+      <div
+        className={cx(
+          styles.contentBlock__image_one,
+          styles.contentBlock__image
+        )}>
         <Img {...image_1} key={image_1.id} />
       </div>
-      <div className={cx(styles.contentBlock__image_two, styles.contentBlock__image)}>
+      <div
+        className={cx(
+          styles.contentBlock__image_two,
+          styles.contentBlock__image
+        )}>
         <Img {...image_2} key={image_2.id} />
       </div>
     </section>

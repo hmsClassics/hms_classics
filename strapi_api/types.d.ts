@@ -56,11 +56,9 @@ export type ComponentLayoutContentBlock = {
   __typename?: 'ComponentLayoutContentBlock';
   button?: Maybe<ComponentLayoutButton>;
   content: Scalars['JSON']['output'];
-  dynamic_swatch_colors: Scalars['Boolean']['output'];
   id: Scalars['ID']['output'];
   image: ComponentMediaImage;
-  image_alignment: Enum_Componentlayoutcontentblock_Image_Alignment;
-  layout: Enum_Componentlayoutcontentblock_Layout;
+  layout_options: ComponentUtilityLayoutOptions;
   main_heading: Scalars['String']['output'];
   sub_heading?: Maybe<Scalars['String']['output']>;
 };
@@ -69,12 +67,10 @@ export type ComponentLayoutFeaturedContentBlock = {
   __typename?: 'ComponentLayoutFeaturedContentBlock';
   button?: Maybe<ComponentLayoutButton>;
   content: Scalars['JSON']['output'];
-  dynamic_swatch_colors: Scalars['Boolean']['output'];
   id: Scalars['ID']['output'];
   image_1: ComponentMediaImage;
   image_2: ComponentMediaImage;
-  image_alignment: Enum_Componentlayoutfeaturedcontentblock_Image_Alignment;
-  layout: Enum_Componentlayoutfeaturedcontentblock_Layout;
+  layout_options: ComponentUtilityLayoutOptions;
   main_heading: Scalars['String']['output'];
   sub_heading?: Maybe<Scalars['String']['output']>;
 };
@@ -171,12 +167,14 @@ export type ComponentMediaImage = {
   description?: Maybe<Scalars['String']['output']>;
   file: UploadFileEntityResponse;
   id: Scalars['ID']['output'];
+  image_alignment: Enum_Componentmediaimage_Image_Alignment;
 };
 
 export type ComponentMediaImageFiltersInput = {
   alt_text?: InputMaybe<StringFilterInput>;
   and?: InputMaybe<Array<InputMaybe<ComponentMediaImageFiltersInput>>>;
   description?: InputMaybe<StringFilterInput>;
+  image_alignment?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentMediaImageFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentMediaImageFiltersInput>>>;
 };
@@ -191,6 +189,13 @@ export type ComponentUtilityContactForm = {
   __typename?: 'ComponentUtilityContactForm';
   Type?: Maybe<Enum_Componentutilitycontactform_Type>;
   id: Scalars['ID']['output'];
+};
+
+export type ComponentUtilityLayoutOptions = {
+  __typename?: 'ComponentUtilityLayoutOptions';
+  dynamic_swatch_colors: Scalars['Boolean']['output'];
+  id: Scalars['ID']['output'];
+  layout?: Maybe<Enum_Componentutilitylayoutoptions_Layout>;
 };
 
 export type ComponentUtilitySeo = {
@@ -351,26 +356,6 @@ export type DateTimeFilterInput = {
   startsWith?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
-export enum Enum_Componentlayoutcontentblock_Image_Alignment {
-  Left = 'left',
-  Right = 'right'
-}
-
-export enum Enum_Componentlayoutcontentblock_Layout {
-  ImageLeft = 'image_left',
-  ImageRight = 'image_right'
-}
-
-export enum Enum_Componentlayoutfeaturedcontentblock_Image_Alignment {
-  Left = 'left',
-  Right = 'right'
-}
-
-export enum Enum_Componentlayoutfeaturedcontentblock_Layout {
-  ImageLeft = 'image_left',
-  ImageRight = 'image_right'
-}
-
 export enum Enum_Componentlayoutheader_Type {
   Hero_1 = 'hero_1',
   Normal = 'normal'
@@ -384,9 +369,22 @@ export enum Enum_Componentlayoutimagegrid_Style {
   PortraitXPortrait = 'portrait_x_portrait'
 }
 
+export enum Enum_Componentmediaimage_Image_Alignment {
+  Bottom = 'bottom',
+  Center = 'center',
+  Left = 'left',
+  Right = 'right',
+  Top = 'top'
+}
+
 export enum Enum_Componentutilitycontactform_Type {
   Basic = 'basic',
   Expanded = 'expanded'
+}
+
+export enum Enum_Componentutilitylayoutoptions_Layout {
+  ImageLeft = 'image_left',
+  ImageRight = 'image_right'
 }
 
 export enum Enum_Contentreleasesreleaseaction_Type {
@@ -474,7 +472,7 @@ export type FooterNavigationRelationResponseCollection = {
   data: Array<FooterNavigationEntity>;
 };
 
-export type GenericMorph = ComponentLayoutButton | ComponentLayoutContentBlock | ComponentLayoutFeaturedContentBlock | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutHeading | ComponentLayoutImageGrid | ComponentLayoutLink | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaVideo | ComponentUtilityContactForm | ComponentUtilitySeo | ContentReleasesRelease | ContentReleasesReleaseAction | FooterNavigation | I18NLocale | Page | PrimaryNavigation | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = ComponentLayoutButton | ComponentLayoutContentBlock | ComponentLayoutFeaturedContentBlock | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutHeading | ComponentLayoutImageGrid | ComponentLayoutLink | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaVideo | ComponentUtilityContactForm | ComponentUtilityLayoutOptions | ComponentUtilitySeo | ContentReleasesRelease | ContentReleasesReleaseAction | FooterNavigation | I18NLocale | Page | PrimaryNavigation | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';

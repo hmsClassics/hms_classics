@@ -1,10 +1,11 @@
 @import '@styles/mixins';
 
 .footer {
-  margin-top: var(--content-spacing);
   border-top: 1px solid var(--color-light-grey);
-  background: var(--color-off-white);
   color: var(--color-dark-grey);
+  background: var(--color-off-white);
+  position: relative;
+  z-index: 5;
 }
 
 .footer__content {

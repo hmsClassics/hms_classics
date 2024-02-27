@@ -16,9 +16,7 @@ export default function ContentBlock({
   sub_heading,
   content,
   image,
-  image_alignment,
-  layout,
-  dynamic_swatch_colors,
+  layout_options: { dynamic_swatch_colors, layout },
   button,
 }: ComponentLayoutContentBlock) {
   const contentBlockLayoutClasses = cx(styles.contentBlock, {
