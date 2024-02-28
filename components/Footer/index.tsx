@@ -5,9 +5,10 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__content}>
-        <p>© {new Date().getFullYear()} HMS Classics</p>
-
         <FooterNav />
+        <div className={styles.copyright}>
+          <p>© {new Date().getFullYear()} HMS Classics</p>
+        </div>
       </div>
     </footer>
   )
