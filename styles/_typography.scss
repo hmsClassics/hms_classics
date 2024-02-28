@@ -1,3 +1,6 @@
+@import '@styles/mixins';
+@import '@styles/variables';
+
 // Learn more about what's going on here:
 // @link https://moderncss.dev/generating-font-size-css-rules-and-creating-a-fluid-type-scale/
 
@@ -126,8 +129,12 @@ h3 {
 
 p {
   font-family: var(--font-jost);
-  font-size: 1.125rem;
+  font-size: 1.375rem;
   line-height: 1.42;
   max-width: 760px;
   margin-bottom: 1rem;
+
+  @include min-width($medium) {
+    font-size: 1.5rem;
+  }
 }
