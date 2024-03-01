@@ -11,13 +11,14 @@ export default function BgImg(componentMediaImage: ComponentMediaImage) {
   return (
     <div className={styles.bg_image__wrapper}>
       {serializedImage?.url && serializedImage?.alt_text && (
-        <Image
-          src={serializedImage.url}
-          alt={serializedImage.alt_text}
-          className={styles.image}
-          width={serializedImage?.width}
-          height={serializedImage?.height}
-        />
+        <div
+          className={styles.bg_image}
+          style={{
+            backgroundImage: `url(${serializedImage.url})`,
+            aspectRatio: `${serializedImage.width}/${serializedImage.height}`,
+          }}>
+          {serializedImage.alt_text}
+        </div>
       )}
     </div>
   )
