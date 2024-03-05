@@ -27,20 +27,17 @@ export default function Header({
   return (
     <header className={headerStyles}>
       <div className={styles.header__content}>
-        <h2>
-          <Link title="HMS Classics" href="/">
+        <h1>
+          <Link title={heroTitle || 'HMS Classics'} href="/">
             <RasterLogo tone={hero ? 'light' : 'dark'} />
           </Link>
-        </h2>
+        </h1>
 
         <PrimaryNav hero={hero} />
       </div>
 
       {hero && (
         <>
-          <div className={styles.hero__title}>
-            <h1>{heroTitle}</h1>
-          </div>
           <div className={styles.hero__background}>
             <Image
               src={serializedImage?.url || '/images/home-header-bg.webp'}
