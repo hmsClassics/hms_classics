@@ -1,4 +1,6 @@
 import { Cloudinary } from '@cloudinary/url-gen'
+import { fill } from '@cloudinary/url-gen/actions/resize'
+import { autoGravity } from '@cloudinary/url-gen/qualifiers/gravity'
 
 import {
   ComponentMediaImage,
@@ -29,7 +31,8 @@ function cloudinary() {
 }
 
 export function serializedUploadFileEntityResponse(
-  file: Maybe<UploadFileEntityResponse> | undefined
+  file: Maybe<UploadFileEntityResponse> | undefined,
+  portrait?: boolean
 ) {
   const file_attributes = file?.data?.attributes
   const provider_metadata = file_attributes?.provider_metadata
@@ -41,6 +44,10 @@ export function serializedUploadFileEntityResponse(
     const cld = cloudinary()
     cloudImage = cld.image(provider_metadata.public_id)
     cloudImage.delivery(Delivery.format('auto'))
+
+    if (portrait) {
+      cloudImage.resize(fill().width(800).height(1080).gravity(autoGravity()))
+    }
 
     imageURL = cloudImage.toURL()
   } else {
@@ -65,10 +72,11 @@ export function serializedComponentMediaImage(image: ComponentMediaImage) {
 
 export class ImageSerializer {
   static serialize(
-    image: ComponentMediaImage
+    image: ComponentMediaImage,
+    portrait?: boolean
   ): ImageSerializerResponse | undefined {
     const response = {
-      ...serializedUploadFileEntityResponse(image.file),
+      ...serializedUploadFileEntityResponse(image.file, portrait),
       ...serializedComponentMediaImage(image),
     }
 
