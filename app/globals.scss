@@ -38,6 +38,12 @@
     rgba(43, 43, 35, 1) 18%,
     rgba(56, 56, 46, 1) 100%
   );
+
+  --gradient-blue: linear-gradient(
+    0deg,
+    rgba(3, 102, 177, 1) 0%,
+    rgba(62, 114, 236, 1) 100%
+  );
 }
 
 @include min-width($medium) {
