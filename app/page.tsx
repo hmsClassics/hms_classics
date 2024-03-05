@@ -13,7 +13,9 @@ import ContentBlock from '@/components/ContentBlock'
 export const generateMetadata = async (): Promise<Metadata> => {
   const data: Page = await getPage('home')
   const pageSeo = data?.seo
-  const image_info = serializedUploadFileEntityResponse(pageSeo.socialImage)
+  const image_info = serializedUploadFileEntityResponse({
+    file: pageSeo?.socialImage,
+  })
 
   const metadata: Metadata = {
     title: pageSeo.htmlTitle,
