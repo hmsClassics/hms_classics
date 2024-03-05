@@ -4,7 +4,6 @@
 .header {
   --hero-height: 40svh;
   --hero-landscape-height: 75svh;
-  background-color: var(--color-off-white);
 
   height: var(--header-height);
 
@@ -31,7 +30,7 @@
     display: flex;
     align-items: center;
     height: 100%;
-    max-height: var(--header-height);
+    max-height: calc(var(--header-height) * 1.1);
     width: calc(100% - (var(--content-spacing) * 2));
     max-width: var(--max-content-width);
     margin: 0 auto;
@@ -54,6 +53,7 @@
       margin: 0 0 0 var(--content-spacing);
       padding: 1.875rem 0;
       width: calc(100% - (var(--content-spacing) * 2));
+      max-height: var(--header-height);
     }
 
     @media only screen and (min-width: $x-large) {
