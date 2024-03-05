@@ -7,23 +7,21 @@
   gap: var(--content-gap);
   grid-template-areas:
     'content'
-    'image_one'
-    'image_two';
+    'images';
   padding-top: var(--content-spacing);
+
+  &__images {
+    grid-area: images;
+    display: grid;
+    gap: var(--content-spacing);
+    grid-template-areas:
+      'image_one'
+      'image_two';
+  }
 
   &--image-right {
     .contentBlock__image {
       margin-left: var(--content-spacing);
-    }
-
-    @include min-width($medium) {
-      grid-template-areas: 'content image_one image_two';
-      grid-template-columns: calc(42% - var(--content-spacing)) auto auto;
-      padding-left: var(--content-spacing);
-
-      .contentBlock__image {
-        margin-left: 0;
-      }
     }
   }
 
@@ -37,30 +35,16 @@
         margin-left: var(--content-spacing);
       }
     }
-
-    @include min-width($medium) {
-      grid-template-areas: 'image_one image_two content';
-      grid-template-columns: auto auto calc(42% - var(--content-spacing));
-      padding-right: var(--content-spacing);
-
-      .contentBlock__image {
-        &_one {
-          margin-right: 0;
-        }
-
-        &_two {
-          margin-left: 0;
-        }
-      }
-    }
   }
 
   &__content {
     grid-area: content;
     padding: 0 var(--content-spacing);
 
-    @include min-width($medium) {
-      padding: 0;
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
     }
   }
 
@@ -108,5 +92,54 @@
 
   h3 {
     margin-top: 1.5rem;
+  }
+
+  @include min-width($medium) {
+    display: block;
+
+    &__images {
+      grid-template-areas: 'image_one image_two';
+      width: 58%;
+    }
+
+    &--image-right {
+      .contentBlock__images {
+        float: right;
+        padding: 0 0 calc(var(--content-spacing) * 0.65) var(--content-spacing);
+      }
+
+      .contentBlock__image {
+        &_one {
+          margin: 0;
+        }
+
+        &_two {
+          margin: 0;
+        }
+      }
+    }
+
+    &--image-left {
+      .contentBlock__images {
+        float: left;
+        padding: 0 var(--content-spacing) calc(var(--content-spacing) * 0.65) 0;
+      }
+
+      .contentBlock__image {
+        &_one {
+          margin: 0;
+        }
+
+        &_two {
+          margin: 0;
+        }
+      }
+
+      .contentBlock__content {
+        > a {
+          float: right;
+        }
+      }
+    }
   }
 }

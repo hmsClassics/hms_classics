@@ -29,6 +29,22 @@ export default function FeaturedContentBlock({
 
   return (
     <section className={contentBlockLayoutClasses}>
+      <div className={styles.contentBlock__images}>
+        <div
+          className={cx(
+            styles.contentBlock__image_one,
+            styles.contentBlock__image
+          )}>
+          <Img componentMediaImage={image_1} portrait={true} key={image_1.id} />
+        </div>
+        <div
+          className={cx(
+            styles.contentBlock__image_two,
+            styles.contentBlock__image
+          )}>
+          <Img componentMediaImage={image_2} portrait={true} key={image_2.id} />
+        </div>
+      </div>
       <div className={styles.contentBlock__content}>
         <h2>{main_heading}</h2>
         <h3 className={cx(heveticaNueuCondensedBold.className)}>
@@ -43,21 +59,6 @@ export default function FeaturedContentBlock({
             button_text={button.button_text}
           />
         )}
-      </div>
-
-      <div
-        className={cx(
-          styles.contentBlock__image_one,
-          styles.contentBlock__image
-        )}>
-        <Img componentMediaImage={image_1} portrait={true} key={image_1.id} />
-      </div>
-      <div
-        className={cx(
-          styles.contentBlock__image_two,
-          styles.contentBlock__image
-        )}>
-        <Img componentMediaImage={image_2} portrait={true} key={image_2.id} />
       </div>
     </section>
   )
