@@ -12,7 +12,10 @@ type ImgProps = {
 export default function Img({ componentMediaImage, portrait }: ImgProps) {
   const serializedImage =
     componentMediaImage &&
-    ImageSerializer.serialize(componentMediaImage, portrait)
+    ImageSerializer.serialize({
+      image: componentMediaImage,
+      portrait,
+    })
 
   return (
     <div className={styles.image__wrapper}>

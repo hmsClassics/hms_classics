@@ -6,7 +6,10 @@ import { ImageSerializer } from '@utility/component_serializer'
 
 export default function BgImg(componentMediaImage: ComponentMediaImage) {
   const serializedImage =
-    componentMediaImage && ImageSerializer.serialize(componentMediaImage)
+    componentMediaImage &&
+    ImageSerializer.serialize({
+      image: componentMediaImage,
+    })
 
   return (
     <div className={styles.bg_image__wrapper}>

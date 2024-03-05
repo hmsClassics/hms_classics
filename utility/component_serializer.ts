@@ -30,10 +30,17 @@ function cloudinary() {
   })
 }
 
-export function serializedUploadFileEntityResponse(
-  file: Maybe<UploadFileEntityResponse> | undefined,
+type SerializedUploadFileEntityResponseProps = {
+  file: Maybe<UploadFileEntityResponse> | undefined
   portrait?: boolean
-) {
+  hero?: boolean
+}
+
+export function serializedUploadFileEntityResponse({
+  file,
+  portrait,
+  hero,
+}: SerializedUploadFileEntityResponseProps): ImageSerializerResponse {
   const file_attributes = file?.data?.attributes
   const provider_metadata = file_attributes?.provider_metadata
 
@@ -44,6 +51,10 @@ export function serializedUploadFileEntityResponse(
     const cld = cloudinary()
     cloudImage = cld.image(provider_metadata.public_id)
     cloudImage.delivery(Delivery.format('auto'))
+
+    if (hero) {
+      cloudImage.resize(fill().width(1920).height(1080).gravity(autoGravity()))
+    }
 
     if (portrait) {
       cloudImage.resize(fill().width(800).height(1080).gravity(autoGravity()))
@@ -60,6 +71,7 @@ export function serializedUploadFileEntityResponse(
     caption: file_attributes?.caption ?? '',
     width: file_attributes?.width ?? 0,
     height: file_attributes?.height ?? 0,
+    provider_metadata,
   }
 }
 
@@ -70,13 +82,24 @@ export function serializedComponentMediaImage(image: ComponentMediaImage) {
   }
 }
 
+type ImageSerializerProps = {
+  image: ComponentMediaImage
+  portrait?: boolean
+  hero?: boolean
+}
+
 export class ImageSerializer {
-  static serialize(
-    image: ComponentMediaImage,
-    portrait?: boolean
-  ): ImageSerializerResponse | undefined {
+  static serialize({
+    image,
+    portrait,
+    hero,
+  }: ImageSerializerProps): ImageSerializerResponse | undefined {
     const response = {
-      ...serializedUploadFileEntityResponse(image.file, portrait),
+      ...serializedUploadFileEntityResponse({
+        file: image?.file,
+        portrait,
+        hero,
+      }),
       ...serializedComponentMediaImage(image),
     }
 

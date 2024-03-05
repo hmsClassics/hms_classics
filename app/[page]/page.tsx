@@ -13,7 +13,9 @@ export const generateMetadata = async ({
 }: PageProps): Promise<Metadata> => {
   const data: Page = await getPage(params.page)
   const pageSeo = data?.seo
-  const image_info = serializedUploadFileEntityResponse(pageSeo.socialImage)
+  const image_info = serializedUploadFileEntityResponse({
+    file: pageSeo?.socialImage,
+  })
 
   const metadata: Metadata = {
     title: pageSeo.htmlTitle,

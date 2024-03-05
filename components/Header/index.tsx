@@ -17,7 +17,12 @@ export default function Header({
 
   // use cloudinary to get smallest image possible
   const serializedImage =
-    background && serializedUploadFileEntityResponse(background)
+    background &&
+    serializedUploadFileEntityResponse({
+      file: background,
+      portrait: false,
+      hero: true,
+    })
 
   const headerStyles = cx(styles.header, {
     [styles['header--hero']]: hero,
