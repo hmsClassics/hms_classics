@@ -131,7 +131,7 @@ p {
   font-family: var(--font-jost);
   font-size: 1.375rem;
   line-height: 1.42;
-  max-width: 760px;
+  // max-width: 760px;
   margin-bottom: 1rem;
 
   @include min-width($medium) {
