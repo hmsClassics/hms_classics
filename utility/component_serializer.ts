@@ -54,10 +54,10 @@ export function serializedUploadFileEntityResponse({
 
     if (hero) {
       cloudImage.resize(fill().width(1920).height(1080).gravity(autoGravity()))
-    }
-
-    if (portrait) {
+    } else if (portrait) {
       cloudImage.resize(fill().width(800).height(1080).gravity(autoGravity()))
+    } else {
+      cloudImage.resize(fill().height(1080).width(1600).gravity(autoGravity()))
     }
 
     imageURL = cloudImage.toURL()
