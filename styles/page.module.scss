@@ -5,7 +5,7 @@
   position: relative;
   padding: 0 0 var(--content-spacing) 0;
   z-index: 5;
-  background-color: var(--color-off-white);
+  background-color: var(--color-white);
 
   @include min-width($medium) {
   }

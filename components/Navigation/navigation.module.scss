@@ -80,23 +80,14 @@
 
   &__menu_icon {
     position: absolute;
-    width: 2.375rem;
-    height: 2.375rem;
+    width: 2.5rem;
+    height: 2.5rem;
     opacity: 1;
 
-    &__middle {
-      fill: var(--color-fl-gr-yellow);
-    }
-    &__top_bottom {
-      fill: var(--color-dark-grey);
-    }
-  }
-
-  &--hero {
-    .nav__menu_icon {
-      &__top_bottom {
-        fill: var(--color-off-white);
-      }
+    &__main_line {
+      stroke: var(--color-off-white);
+      stroke-width: 1.5;
+      stroke-linecap: round;
     }
   }
 
@@ -110,16 +101,15 @@
 
     &__main_line {
       fill: none;
-      stroke: #ffd500;
-      stroke-width: 7;
-      stroke-miterlimit: 10;
+      stroke: var(--color-off-white);
+      stroke-width: 4;
+      stroke-linecap: round;
     }
 
     &__secondary_line {
       fill: none;
-      stroke: #393939;
+      stroke: var(--color-light-grey);
       stroke-width: 2;
-      stroke-miterlimit: 10;
     }
   }
 
