@@ -5,6 +5,7 @@ import { ComponentLayoutFeaturedContentBlock } from '@/strapi_api/types'
 import Img from '@components/Image'
 import styles from './featured_content_block.module.scss'
 import TextBlocksRenderer from '@components/TextBlocksRenderer'
+import LinkButton from '../LinkButton'
 
 const heveticaNueuCondensedBold = localFont({
   src: '../../fonts/Helvetica-Neue-Condensed-Bold.woff2',
@@ -34,6 +35,14 @@ export default function FeaturedContentBlock({
           {sub_heading}
         </h3>
         <TextBlocksRenderer content={content} />
+
+        {button && (
+          <LinkButton
+            id={button.id}
+            link_target={button.link_target}
+            button_text={button.button_text}
+          />
+        )}
       </div>
 
       <div
