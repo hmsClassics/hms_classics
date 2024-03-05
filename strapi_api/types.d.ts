@@ -370,6 +370,7 @@ export enum Enum_Componentlayoutimagegrid_Style {
 }
 
 export enum Enum_Componentmediaimage_Image_Alignment {
+  Auto = 'auto',
   Bottom = 'bottom',
   Center = 'center',
   Left = 'left',

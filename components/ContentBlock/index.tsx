@@ -35,7 +35,7 @@ export default function ContentBlock({
       </div>
 
       <div className={styles.contentBlock__image}>
-        <Img {...image} key={image.id} />
+        <Img componentMediaImage={image} key={image.id} />
       </div>
     </section>
   )

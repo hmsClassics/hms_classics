@@ -4,9 +4,15 @@ import styles from './image.module.scss'
 import { ComponentMediaImage } from '@strapi/types'
 import { ImageSerializer } from '@utility/component_serializer'
 
-export default function Img(componentMediaImage: ComponentMediaImage) {
+type ImgProps = {
+  componentMediaImage: ComponentMediaImage
+  portrait?: boolean
+}
+
+export default function Img({ componentMediaImage, portrait }: ImgProps) {
   const serializedImage =
-    componentMediaImage && ImageSerializer.serialize(componentMediaImage)
+    componentMediaImage &&
+    ImageSerializer.serialize(componentMediaImage, portrait)
 
   return (
     <div className={styles.image__wrapper}>

@@ -12,7 +12,9 @@ export default function MediaGrid({ images, style }: ComponentLayoutImageGrid) {
 
   return (
     <div className={gridClasses}>
-      {images?.map((image) => image && <Img {...image} key={image.id} />)}
+      {images?.map(
+        (image) => image && <Img componentMediaImage={image} key={image.id} />
+      )}
     </div>
   )
 }

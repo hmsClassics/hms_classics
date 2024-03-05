@@ -41,14 +41,14 @@ export default function FeaturedContentBlock({
           styles.contentBlock__image_one,
           styles.contentBlock__image
         )}>
-        <Img {...image_1} key={image_1.id} />
+        <Img componentMediaImage={image_1} portrait={true} key={image_1.id} />
       </div>
       <div
         className={cx(
           styles.contentBlock__image_two,
           styles.contentBlock__image
         )}>
-        <Img {...image_2} key={image_2.id} />
+        <Img componentMediaImage={image_2} portrait={true} key={image_2.id} />
       </div>
     </section>
   )
