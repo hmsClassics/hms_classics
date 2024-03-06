@@ -157,8 +157,8 @@ export type ComponentLayoutLinkInput = {
 
 export type ComponentLayoutTextBlock = {
   __typename?: 'ComponentLayoutTextBlock';
-  content?: Maybe<Scalars['JSON']['output']>;
   id: Scalars['ID']['output'];
+  text_content?: Maybe<Scalars['JSON']['output']>;
 };
 
 export type ComponentMediaImage = {
