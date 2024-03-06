@@ -5,10 +5,8 @@ import { getPage } from '@strapi/page-query'
 import { Page } from '@strapi/types'
 import renderComponent from '@utility/render_component'
 import Header from '@components/Header'
-import styles from '@styles/page.module.scss'
+import styles from '@styles/home.module.scss'
 import { serializedUploadFileEntityResponse } from '@utility/component_serializer'
-import ContactForm from '@/components/ContactForm'
-import ContentBlock from '@/components/ContentBlock'
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const data: Page = await getPage('home')

@@ -50,7 +50,7 @@ export default function FeaturedContentBlock({
         <h3 className={cx(heveticaNueuCondensedBold.className)}>
           {sub_heading}
         </h3>
-        <TextBlocksRenderer content={content} />
+        <TextBlocksRenderer text_content={content} />
 
         {button && (
           <LinkButton
