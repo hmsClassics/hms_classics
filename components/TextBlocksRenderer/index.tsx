@@ -12,7 +12,7 @@ const TextBlocksRenderer = (props: Partial<ComponentLayoutTextBlock>) => {
   return (
     <div className={styles.text_block}>
       <BlocksRenderer
-        content={props.content}
+        content={props.text_content}
         blocks={{
           paragraph: ({ children }) => <P>{children}</P>,
           link: ({ children, url }) => <Link href={url}>{children}</Link>,

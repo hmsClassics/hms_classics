@@ -147,6 +147,11 @@ export async function getPage(slug: string): Promise<Page> {
                 ... on ComponentLayoutFeaturedContentBlock {
                   ...layoutFeaturedBlockAttributes
                 }
+                ... on ComponentLayoutTextBlock {
+                  __typename
+                  id
+                  text_content
+                }
               }
             }
           }
