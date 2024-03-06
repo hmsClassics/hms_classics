@@ -12,6 +12,15 @@
 }
 
 .content_wrapper {
+  --page-padding: 1.875rem;
+
+  @include min-width($medium) {
+    --page-padding: 3.75rem;
+  }
+
+  width: calc(100% - (var(--page-padding) * 2));
+  margin: 0 var(--page-padding);
   max-width: var(--max-content-width);
   margin: 0 auto;
+  padding: var(--page-padding) 0;
 }

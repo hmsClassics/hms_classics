@@ -26,6 +26,7 @@ export default function Header({
 
   const headerStyles = cx(styles.header, {
     [styles['header--hero']]: hero,
+    [styles['header--regular']]: !hero,
     [styles.hero]: hero,
   })
 
