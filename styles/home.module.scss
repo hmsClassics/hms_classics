@@ -1,0 +1,17 @@
+@import '@styles/mixins';
+@import '@styles/variables';
+
+.main {
+  position: relative;
+  padding: 0 0 var(--content-spacing) 0;
+  z-index: 5;
+  background-color: var(--color-white);
+
+  @include min-width($medium) {
+  }
+}
+
+.content_wrapper {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+}
