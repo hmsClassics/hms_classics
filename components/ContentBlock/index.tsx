@@ -27,6 +27,9 @@ export default function ContentBlock({
 
   return (
     <section className={contentBlockLayoutClasses}>
+      <div className={styles.contentBlock__image}>
+        <Img componentMediaImage={image} key={image.id} />
+      </div>
       <div className={styles.contentBlock__content}>
         <h2>{main_heading}</h2>
         <h3 className={cx(heveticaNueuCondensedBold.className)}>
@@ -41,10 +44,6 @@ export default function ContentBlock({
             button_text={button.button_text}
           />
         )}
-      </div>
-
-      <div className={styles.contentBlock__image}>
-        <Img componentMediaImage={image} key={image.id} />
       </div>
     </section>
   )
