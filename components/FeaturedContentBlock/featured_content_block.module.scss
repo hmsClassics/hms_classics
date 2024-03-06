@@ -105,7 +105,7 @@
     &--image-right {
       .contentBlock__images {
         float: right;
-        padding: 0 0 calc(var(--content-spacing) * 0.65) var(--content-spacing);
+        margin: 0 0 calc(var(--content-spacing) * 0.65) var(--content-spacing);
       }
 
       .contentBlock__image {
@@ -122,7 +122,7 @@
     &--image-left {
       .contentBlock__images {
         float: left;
-        padding: 0 var(--content-spacing) calc(var(--content-spacing) * 0.65) 0;
+        margin: 0 var(--content-spacing) calc(var(--content-spacing) * 0.65) 0;
       }
 
       .contentBlock__image {
