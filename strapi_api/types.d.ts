@@ -13,6 +13,7 @@ export type Scalars = {
   Boolean: { input: boolean; output: boolean; }
   Int: { input: number; output: number; }
   Float: { input: number; output: number; }
+  CarContentDynamicZoneInput: { input: any; output: any; }
   DateTime: { input: any; output: any; }
   I18NLocaleCode: { input: any; output: any; }
   JSON: { input: any; output: any; }
@@ -43,6 +44,57 @@ export type BooleanFilterInput = {
   null?: InputMaybe<Scalars['Boolean']['input']>;
   or?: InputMaybe<Array<InputMaybe<Scalars['Boolean']['input']>>>;
   startsWith?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type Car = {
+  __typename?: 'Car';
+  content: Array<Maybe<CarContentDynamicZone>>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  headerType: ComponentLayoutHeader;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  seo: ComponentUtilitySeo;
+  slug: Scalars['String']['output'];
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type CarContentDynamicZone = ComponentLayoutContentBlock | ComponentMediaImage | ComponentMediaImageGallery | ComponentMediaVideo | ComponentUtilityContactForm | Error;
+
+export type CarEntity = {
+  __typename?: 'CarEntity';
+  attributes?: Maybe<Car>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type CarEntityResponse = {
+  __typename?: 'CarEntityResponse';
+  data?: Maybe<CarEntity>;
+};
+
+export type CarEntityResponseCollection = {
+  __typename?: 'CarEntityResponseCollection';
+  data: Array<CarEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type CarFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<CarFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  headerType?: InputMaybe<ComponentLayoutHeaderFiltersInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<CarFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<CarFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  seo?: InputMaybe<ComponentUtilitySeoFiltersInput>;
+  slug?: InputMaybe<StringFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type CarInput = {
+  content?: InputMaybe<Array<Scalars['CarContentDynamicZoneInput']['input']>>;
+  headerType?: InputMaybe<ComponentLayoutHeaderInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  seo?: InputMaybe<ComponentUtilitySeoInput>;
+  slug?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ComponentLayoutButton = {
@@ -177,6 +229,19 @@ export type ComponentMediaImageFiltersInput = {
   image_alignment?: InputMaybe<StringFilterInput>;
   not?: InputMaybe<ComponentMediaImageFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<ComponentMediaImageFiltersInput>>>;
+};
+
+export type ComponentMediaImageGallery = {
+  __typename?: 'ComponentMediaImageGallery';
+  id: Scalars['ID']['output'];
+  images: UploadFileRelationResponseCollection;
+};
+
+
+export type ComponentMediaImageGalleryImagesArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type ComponentMediaVideo = {
@@ -473,7 +538,7 @@ export type FooterNavigationRelationResponseCollection = {
   data: Array<FooterNavigationEntity>;
 };
 
-export type GenericMorph = ComponentLayoutButton | ComponentLayoutContentBlock | ComponentLayoutFeaturedContentBlock | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutHeading | ComponentLayoutImageGrid | ComponentLayoutLink | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaVideo | ComponentUtilityContactForm | ComponentUtilityLayoutOptions | ComponentUtilitySeo | ContentReleasesRelease | ContentReleasesReleaseAction | FooterNavigation | I18NLocale | Page | PrimaryNavigation | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Car | ComponentLayoutButton | ComponentLayoutContentBlock | ComponentLayoutFeaturedContentBlock | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutHeading | ComponentLayoutImageGrid | ComponentLayoutLink | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaImageGallery | ComponentMediaVideo | ComponentUtilityContactForm | ComponentUtilityLayoutOptions | ComponentUtilitySeo | ContentReleasesRelease | ContentReleasesReleaseAction | FooterNavigation | I18NLocale | Page | PrimaryNavigation | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
@@ -590,6 +655,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
+  createCar?: Maybe<CarEntityResponse>;
   createContentReleasesRelease?: Maybe<ContentReleasesReleaseEntityResponse>;
   createContentReleasesReleaseAction?: Maybe<ContentReleasesReleaseActionEntityResponse>;
   createFooterNavigationLocalization?: Maybe<FooterNavigationEntityResponse>;
@@ -601,6 +667,7 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteCar?: Maybe<CarEntityResponse>;
   deleteContentReleasesRelease?: Maybe<ContentReleasesReleaseEntityResponse>;
   deleteContentReleasesReleaseAction?: Maybe<ContentReleasesReleaseActionEntityResponse>;
   deleteFooterNavigation?: Maybe<FooterNavigationEntityResponse>;
@@ -623,6 +690,7 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateCar?: Maybe<CarEntityResponse>;
   updateContentReleasesRelease?: Maybe<ContentReleasesReleaseEntityResponse>;
   updateContentReleasesReleaseAction?: Maybe<ContentReleasesReleaseActionEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
@@ -643,6 +711,11 @@ export type MutationChangePasswordArgs = {
   currentPassword: Scalars['String']['input'];
   password: Scalars['String']['input'];
   passwordConfirmation: Scalars['String']['input'];
+};
+
+
+export type MutationCreateCarArgs = {
+  data: CarInput;
 };
 
 
@@ -692,6 +765,11 @@ export type MutationCreateUsersPermissionsRoleArgs = {
 
 export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
+};
+
+
+export type MutationDeleteCarArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
@@ -777,6 +855,12 @@ export type MutationResetPasswordArgs = {
   code: Scalars['String']['input'];
   password: Scalars['String']['input'];
   passwordConfirmation: Scalars['String']['input'];
+};
+
+
+export type MutationUpdateCarArgs = {
+  data: CarInput;
+  id: Scalars['ID']['input'];
 };
 
 
@@ -964,6 +1048,8 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
+  car?: Maybe<CarEntityResponse>;
+  cars?: Maybe<CarEntityResponseCollection>;
   contentReleasesRelease?: Maybe<ContentReleasesReleaseEntityResponse>;
   contentReleasesReleaseAction?: Maybe<ContentReleasesReleaseActionEntityResponse>;
   contentReleasesReleaseActions?: Maybe<ContentReleasesReleaseActionEntityResponseCollection>;
@@ -983,6 +1069,19 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+};
+
+
+export type QueryCarArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type QueryCarsArgs = {
+  filters?: InputMaybe<CarFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 
