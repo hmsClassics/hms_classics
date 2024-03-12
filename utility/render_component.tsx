@@ -1,4 +1,4 @@
-import { PageContentDynamicZone } from '@strapi/types'
+import { CarContentDynamicZone, PageContentDynamicZone } from '@strapi/types'
 import Img from '@components/Image'
 import MediaGrid from '@components/MediaGrids'
 import TextBlock from '@components/TextBlock'
@@ -22,13 +22,16 @@ const COMPONENT_MAP: ComponentTypeMap = {
   Error: () => <div>ERROR</div>,
 }
 
-const renderComponent = (componentData: PageContentDynamicZone | null) => {
+const renderComponent = (
+  componentData: PageContentDynamicZone | CarContentDynamicZone | null
+) => {
   const typeName = componentData?.__typename
 
   if (!typeName) return null
 
   const Component = COMPONENT_MAP[typeName]
   if (!Component) {
+    console.error(`🚨 No component found for type: ${typeName}`)
     return null // or a default/fallback component
   }
 
