@@ -2,16 +2,22 @@ import { gql } from '@apollo/client'
 import { Car } from '@strapi/types'
 import client from '@strapi/client'
 
+const UPLOAD_FILE = gql`
+  fragment uploadFile on UploadFile {
+    url
+    alternativeText
+    caption
+    width
+    height
+    provider_metadata
+  }
+`
+
 const MEDIA_ATTRIBUTES_FRAGMENT = gql`
   fragment mediaAttributes on UploadFileEntityResponse {
     data {
       attributes {
-        url
-        alternativeText
-        caption
-        width
-        height
-        provider_metadata
+        ...uploadFile
       }
     }
   }
@@ -72,14 +78,39 @@ const CAR_SEO_FRAGMENT = gql`
   }
 `
 
+const BLOCK_LAYOUT_ATTRIBUTES = gql`
+  fragment blockLayoutAttributes on ComponentUtilityLayoutOptions {
+    dynamic_swatch_colors
+    layout
+  }
+`
+
+const IMAGE_GALLERY = gql`
+  fragment imageGallery on ComponentMediaImageGallery {
+    images {
+      data {
+        id
+        attributes {
+          ...uploadFile
+        }
+      }
+    }
+  }
+`
+
 export async function getCar(slug: string): Promise<Car> {
   const cacheBustedClient = client(Date.now().toString())
 
   const query = {
     query: gql`
+      ${UPLOAD_FILE}
       ${MEDIA_ATTRIBUTES_FRAGMENT}
+      ${IMAGE_ATTRIBUTES}
       ${HEADER}
       ${CAR_SEO_FRAGMENT}
+      ${IMAGE_GALLERY}
+      ${BLOCK_LAYOUT_ATTRIBUTES}
+      ${LAYOUT_BLOCK_ATTRIBUTES}
 
       query GetCar($slug: String!) {
         cars(filters: { slug: { eq: $slug } }) {
@@ -88,6 +119,21 @@ export async function getCar(slug: string): Promise<Car> {
               slug
               ...carSEO
               ...header
+              content {
+                ... on ComponentMediaImage {
+                  ...imageAttributes
+                }
+                ... on ComponentMediaImageGallery {
+                  ...imageGallery
+                }
+                ... on ComponentLayoutContentBlock {
+                  ...layoutBlockAttributes
+                }
+                ... on ComponentLayoutTextBlock {
+                  id
+                  text_content
+                }
+              }
             }
           }
         }

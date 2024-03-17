@@ -57,7 +57,7 @@ export type Car = {
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
-export type CarContentDynamicZone = ComponentLayoutContentBlock | ComponentMediaImage | ComponentMediaImageGallery | ComponentMediaVideo | ComponentUtilityContactForm | Error;
+export type CarContentDynamicZone = ComponentLayoutContentBlock | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaImageGallery | ComponentMediaVideo | ComponentUtilityContactForm | Error;
 
 export type CarEntity = {
   __typename?: 'CarEntity';

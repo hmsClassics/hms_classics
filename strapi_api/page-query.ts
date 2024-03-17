@@ -2,16 +2,22 @@ import { gql } from '@apollo/client'
 import { Page } from '@strapi/types'
 import client from '@strapi/client'
 
+const UPLOAD_FILE = gql`
+  fragment uploadFile on UploadFile {
+    url
+    alternativeText
+    caption
+    width
+    height
+    provider_metadata
+  }
+`
+
 const MEDIA_ATTRIBUTES_FRAGMENT = gql`
   fragment mediaAttributes on UploadFileEntityResponse {
     data {
       attributes {
-        url
-        alternativeText
-        caption
-        width
-        height
-        provider_metadata
+        ...uploadFile
       }
     }
   }
@@ -115,6 +121,7 @@ export async function getPage(slug: string): Promise<Page> {
 
   const { data } = await cacheBustedClient.query({
     query: gql`
+      ${UPLOAD_FILE}
       ${PAGE_SEO_FRAGMENT}
       ${HEADER}
       ${MEDIA_ATTRIBUTES_FRAGMENT}
