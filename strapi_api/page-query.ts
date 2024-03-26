@@ -1,67 +1,19 @@
 import { gql } from '@apollo/client'
 import { Page } from '@strapi/types'
 import client from '@strapi/client'
+import {
+  HEADER,
+  BLOCK_LAYOUT_ATTRIBUTES,
+  IMAGE_ATTRIBUTES,
+  MEDIA_ATTRIBUTES_FRAGMENT,
+  IMAGE_GRID_ATTRIBUTES,
+  UPLOAD_FILE,
+  LAYOUT_BLOCK_ATTRIBUTES,
+  SEO_FRAGMENT,
+} from './common-queries'
+import type { QueryModel } from './common-queries'
 
-const UPLOAD_FILE = gql`
-  fragment uploadFile on UploadFile {
-    url
-    alternativeText
-    caption
-    width
-    height
-    provider_metadata
-  }
-`
-
-const MEDIA_ATTRIBUTES_FRAGMENT = gql`
-  fragment mediaAttributes on UploadFileEntityResponse {
-    data {
-      attributes {
-        ...uploadFile
-      }
-    }
-  }
-`
-
-const IMAGE_ATTRIBUTES = gql`
-  fragment imageAttributes on ComponentMediaImage {
-    id
-    alt_text
-    description
-    image_alignment
-    file {
-      ...mediaAttributes
-    }
-  }
-`
-
-const IMAGE_GRID_ATTRIBUTES = gql`
-  fragment imageGridAttributes on ComponentLayoutImageGrid {
-    images {
-      ...imageAttributes
-    }
-    style
-  }
-`
-
-const HEADER = gql`
-  fragment header on Page {
-    headerType {
-      type
-      heroTitle
-      background {
-        ...mediaAttributes
-      }
-    }
-  }
-`
-
-const BLOCK_LAYOUT_ATTRIBUTES = gql`
-  fragment blockLayoutAttributes on ComponentUtilityLayoutOptions {
-    dynamic_swatch_colors
-    layout
-  }
-`
+const queryModel: QueryModel = 'Page'
 
 const LAYOUT_FEATURED_BLOCK_ATTRIBUTES = gql`
   fragment layoutFeaturedBlockAttributes on ComponentLayoutFeaturedContentBlock {
@@ -85,45 +37,14 @@ const LAYOUT_FEATURED_BLOCK_ATTRIBUTES = gql`
   }
 `
 
-const LAYOUT_BLOCK_ATTRIBUTES = gql`
-  fragment layoutBlockAttributes on ComponentLayoutContentBlock {
-    id
-    main_heading
-    sub_heading
-    content
-    button {
-      button_text
-      link_target
-    }
-    image {
-      ...imageAttributes
-    }
-    layout_options {
-      ...blockLayoutAttributes
-    }
-  }
-`
-
-const PAGE_SEO_FRAGMENT = gql`
-  fragment pageSEO on Page {
-    seo {
-      htmlTitle
-      htmlDescription
-      socialImage {
-        ...mediaAttributes
-      }
-    }
-  }
-`
-
 export async function getPage(slug: string): Promise<Page> {
   const cacheBustedClient = client(Date.now().toString())
 
   const { data } = await cacheBustedClient.query({
     query: gql`
       ${UPLOAD_FILE}
-      ${PAGE_SEO_FRAGMENT}
-      ${HEADER}
+      ${HEADER(queryModel)}
+      ${SEO_FRAGMENT(queryModel)}
       ${MEDIA_ATTRIBUTES_FRAGMENT}
       ${IMAGE_ATTRIBUTES}
       ${IMAGE_GRID_ATTRIBUTES}
@@ -136,8 +57,8 @@ export async function getPage(slug: string): Promise<Page> {
           data {
             attributes {
               slug
-              ...header
-              ...pageSEO
+              ...${queryModel}header
+              ...${queryModel}SEO
               content {
                 ... on ComponentMediaImage {
                   ...imageAttributes
