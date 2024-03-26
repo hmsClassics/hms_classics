@@ -54,7 +54,15 @@ export type Car = {
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   seo: ComponentUtilitySeo;
   slug: Scalars['String']['output'];
+  specs: Array<Maybe<ComponentUtilityLabelValue>>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type CarSpecsArgs = {
+  filters?: InputMaybe<ComponentUtilityLabelValueFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type CarContentDynamicZone = ComponentLayoutContentBlock | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaImageGallery | ComponentMediaVideo | ComponentUtilityContactForm | Error;
@@ -86,6 +94,7 @@ export type CarFiltersInput = {
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   seo?: InputMaybe<ComponentUtilitySeoFiltersInput>;
   slug?: InputMaybe<StringFilterInput>;
+  specs?: InputMaybe<ComponentUtilityLabelValueFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
@@ -95,6 +104,7 @@ export type CarInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   seo?: InputMaybe<ComponentUtilitySeoInput>;
   slug?: InputMaybe<Scalars['String']['input']>;
+  specs?: InputMaybe<Array<InputMaybe<ComponentUtilityLabelValueInput>>>;
 };
 
 export type ComponentLayoutButton = {
@@ -254,6 +264,27 @@ export type ComponentUtilityContactForm = {
   __typename?: 'ComponentUtilityContactForm';
   Type?: Maybe<Enum_Componentutilitycontactform_Type>;
   id: Scalars['ID']['output'];
+};
+
+export type ComponentUtilityLabelValue = {
+  __typename?: 'ComponentUtilityLabelValue';
+  id: Scalars['ID']['output'];
+  label: Scalars['String']['output'];
+  value: Scalars['String']['output'];
+};
+
+export type ComponentUtilityLabelValueFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentUtilityLabelValueFiltersInput>>>;
+  label?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentUtilityLabelValueFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentUtilityLabelValueFiltersInput>>>;
+  value?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentUtilityLabelValueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  value?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ComponentUtilityLayoutOptions = {
@@ -538,7 +569,7 @@ export type FooterNavigationRelationResponseCollection = {
   data: Array<FooterNavigationEntity>;
 };
 
-export type GenericMorph = Car | ComponentLayoutButton | ComponentLayoutContentBlock | ComponentLayoutFeaturedContentBlock | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutHeading | ComponentLayoutImageGrid | ComponentLayoutLink | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaImageGallery | ComponentMediaVideo | ComponentUtilityContactForm | ComponentUtilityLayoutOptions | ComponentUtilitySeo | ContentReleasesRelease | ContentReleasesReleaseAction | FooterNavigation | I18NLocale | Page | PrimaryNavigation | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Car | ComponentLayoutButton | ComponentLayoutContentBlock | ComponentLayoutFeaturedContentBlock | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutHeading | ComponentLayoutImageGrid | ComponentLayoutLink | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaImageGallery | ComponentMediaVideo | ComponentUtilityContactForm | ComponentUtilityLabelValue | ComponentUtilityLayoutOptions | ComponentUtilitySeo | ContentReleasesRelease | ContentReleasesReleaseAction | FooterNavigation | I18NLocale | Page | PrimaryNavigation | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';

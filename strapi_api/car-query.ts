@@ -1,89 +1,18 @@
 import { gql } from '@apollo/client'
 import { Car } from '@strapi/types'
 import client from '@strapi/client'
+import {
+  HEADER,
+  BLOCK_LAYOUT_ATTRIBUTES,
+  IMAGE_ATTRIBUTES,
+  MEDIA_ATTRIBUTES_FRAGMENT,
+  LAYOUT_BLOCK_ATTRIBUTES,
+  UPLOAD_FILE,
+  SEO_FRAGMENT,
+} from './common-queries'
+import type { QueryModel } from './common-queries'
 
-const UPLOAD_FILE = gql`
-  fragment uploadFile on UploadFile {
-    url
-    alternativeText
-    caption
-    width
-    height
-    provider_metadata
-  }
-`
-
-const MEDIA_ATTRIBUTES_FRAGMENT = gql`
-  fragment mediaAttributes on UploadFileEntityResponse {
-    data {
-      attributes {
-        ...uploadFile
-      }
-    }
-  }
-`
-
-const IMAGE_ATTRIBUTES = gql`
-  fragment imageAttributes on ComponentMediaImage {
-    id
-    alt_text
-    description
-    image_alignment
-    file {
-      ...mediaAttributes
-    }
-  }
-`
-
-const LAYOUT_BLOCK_ATTRIBUTES = gql`
-  fragment layoutBlockAttributes on ComponentLayoutContentBlock {
-    id
-    main_heading
-    sub_heading
-    content
-    button {
-      button_text
-      link_target
-    }
-    image {
-      ...imageAttributes
-    }
-    layout_options {
-      ...blockLayoutAttributes
-    }
-  }
-`
-
-const HEADER = gql`
-  fragment header on Car {
-    headerType {
-      type
-      heroTitle
-      background {
-        ...mediaAttributes
-      }
-    }
-  }
-`
-
-const CAR_SEO_FRAGMENT = gql`
-  fragment carSEO on Car {
-    seo {
-      htmlTitle
-      htmlDescription
-      socialImage {
-        ...mediaAttributes
-      }
-    }
-  }
-`
-
-const BLOCK_LAYOUT_ATTRIBUTES = gql`
-  fragment blockLayoutAttributes on ComponentUtilityLayoutOptions {
-    dynamic_swatch_colors
-    layout
-  }
-`
+const queryModel: QueryModel = 'Car'
 
 const IMAGE_GALLERY = gql`
   fragment imageGallery on ComponentMediaImageGallery {
@@ -106,8 +35,8 @@ export async function getCar(slug: string): Promise<Car> {
       ${UPLOAD_FILE}
       ${MEDIA_ATTRIBUTES_FRAGMENT}
       ${IMAGE_ATTRIBUTES}
-      ${HEADER}
-      ${CAR_SEO_FRAGMENT}
+      ${HEADER(queryModel)}
+      ${SEO_FRAGMENT(queryModel)}
       ${IMAGE_GALLERY}
       ${BLOCK_LAYOUT_ATTRIBUTES}
       ${LAYOUT_BLOCK_ATTRIBUTES}
@@ -117,8 +46,8 @@ export async function getCar(slug: string): Promise<Car> {
           data {
             attributes {
               slug
-              ...carSEO
-              ...header
+              ...${queryModel}SEO
+              ...${queryModel}header
               content {
                 ... on ComponentMediaImage {
                   ...imageAttributes
