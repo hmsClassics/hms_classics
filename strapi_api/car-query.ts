@@ -6,6 +6,7 @@ import {
   BLOCK_LAYOUT_ATTRIBUTES,
   IMAGE_ATTRIBUTES,
   MEDIA_ATTRIBUTES_FRAGMENT,
+  IMAGE_GRID_ATTRIBUTES,
   LAYOUT_BLOCK_ATTRIBUTES,
   UPLOAD_FILE,
   SEO_FRAGMENT,
@@ -35,6 +36,7 @@ export async function getCar(slug: string): Promise<Car> {
       ${UPLOAD_FILE}
       ${MEDIA_ATTRIBUTES_FRAGMENT}
       ${IMAGE_ATTRIBUTES}
+      ${IMAGE_GRID_ATTRIBUTES}
       ${HEADER(queryModel)}
       ${SEO_FRAGMENT(queryModel)}
       ${IMAGE_GALLERY}
@@ -54,6 +56,9 @@ export async function getCar(slug: string): Promise<Car> {
                 }
                 ... on ComponentMediaImageGallery {
                   ...imageGallery
+                }
+                ... on ComponentLayoutImageGrid {
+                  ...imageGridAttributes
                 }
                 ... on ComponentLayoutContentBlock {
                   ...layoutBlockAttributes

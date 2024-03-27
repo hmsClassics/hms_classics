@@ -61,7 +61,7 @@ export const IMAGE_ATTRIBUTES = gql`
 
 export const IMAGE_GRID_ATTRIBUTES = gql`
   fragment imageGridAttributes on ComponentLayoutImageGrid {
-    images {
+    gridImages {
       ...imageAttributes
     }
     style

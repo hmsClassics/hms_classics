@@ -181,13 +181,13 @@ export type ComponentLayoutHeading = {
 
 export type ComponentLayoutImageGrid = {
   __typename?: 'ComponentLayoutImageGrid';
+  gridImages?: Maybe<Array<Maybe<ComponentMediaImage>>>;
   id: Scalars['ID']['output'];
-  images?: Maybe<Array<Maybe<ComponentMediaImage>>>;
   style?: Maybe<Enum_Componentlayoutimagegrid_Style>;
 };
 
 
-export type ComponentLayoutImageGridImagesArgs = {
+export type ComponentLayoutImageGridGridImagesArgs = {
   filters?: InputMaybe<ComponentMediaImageFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
