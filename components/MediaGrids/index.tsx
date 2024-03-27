@@ -3,16 +3,19 @@ import styles from './mediaGrids.module.scss'
 import { ComponentLayoutImageGrid } from '@strapi/types'
 import Img from '@components/Image'
 
-export default function MediaGrid({ images, style }: ComponentLayoutImageGrid) {
+export default function MediaGrid({
+  gridImages,
+  style,
+}: ComponentLayoutImageGrid) {
   const gridType = style || 'auto'
   const gridClasses = cx(styles.media_grid, {
     [styles[gridType]]: style,
-    [styles[`auto--${images?.length}`]]: gridType === 'auto',
+    [styles[`auto--${gridImages?.length}`]]: gridType === 'auto',
   })
 
   return (
     <div className={gridClasses}>
-      {images?.map(
+      {gridImages?.map(
         (image) => image && <Img componentMediaImage={image} key={image.id} />
       )}
     </div>

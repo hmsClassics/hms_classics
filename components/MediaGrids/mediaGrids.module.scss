@@ -37,7 +37,9 @@
 }
 
 .landscape_x_landscape,
-.portrait_x_portrait {
+.portrait_x_portrait,
+.landscape_x_portrait,
+.portrait_x_landscape {
   grid-template-areas:
     'one'
     'two';
@@ -48,11 +50,19 @@
 }
 
 .portrait_x_landscape {
-  grid-template-columns: 2.5fr 6.4fr;
+  grid-template-columns: 1fr;
+
+  @media only screen and (min-width: $small-medium) {
+    grid-template-columns: 3.33fr 6.66fr;
+  }
 }
 
 .landscape_x_portrait {
-  grid-template-columns: 6.4fr 2.5fr;
+  grid-template-columns: 1fr;
+
+  @media only screen and (min-width: $small-medium) {
+    grid-template-columns: 6.66fr 3.33fr;
+  }
 }
 
 .auto {

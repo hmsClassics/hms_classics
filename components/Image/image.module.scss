@@ -8,6 +8,10 @@
     // for using the '@fristys/masonry' package
     // height: inherit;
   }
+
+  [class*='content_wrapper'] > & + & {
+    margin-top: var(--content-section-gap);
+  }
 }
 
 .image {
