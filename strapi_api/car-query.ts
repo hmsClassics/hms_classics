@@ -57,6 +57,10 @@ export async function getCar(slug: string): Promise<Car> {
                 ... on ComponentMediaImageGallery {
                   ...imageGallery
                 }
+                ... on ComponentMediaVideo {
+                  wistia_oEmbed_url
+                  orientation
+                }
                 ... on ComponentLayoutImageGrid {
                   ...imageGridAttributes
                 }

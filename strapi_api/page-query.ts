@@ -65,6 +65,7 @@ export async function getPage(slug: string): Promise<Page> {
                 }
                 ... on ComponentMediaVideo {
                   wistia_oEmbed_url
+                  orientation
                 }
                 ... on ComponentLayoutImageGrid {
                   ...imageGridAttributes

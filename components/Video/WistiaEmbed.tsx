@@ -2,12 +2,13 @@
 
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
+import { Enum_Componentmediavideo_Orientation } from '@/strapi_api/types'
 
 interface WistiaEmbedProps {
   videoId: string
   width?: string
-  padding?: string
   responsive?: boolean
+  orientation: Enum_Componentmediavideo_Orientation
 }
 
 const useExternalScript = (src: string) => {
@@ -31,10 +32,11 @@ const useExternalScript = (src: string) => {
 export default function WistiaEmbed({
   videoId,
   width = undefined, // Wistia's default is no width specified
-  responsive = true,
-  padding = '56.25% 0 0', // Wistia's default
+  responsive = true, // Wistia's default
+  orientation,
 }: WistiaEmbedProps) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const padding = orientation === 'landscape' ? '56.25% 0 0' : '177.77% 0 0'
 
   useExternalScript(`https://fast.wistia.com/embed/medias/${videoId}.jsonp`)
   useExternalScript('https://fast.wistia.com/assets/external/E-v1.js')
@@ -47,9 +49,7 @@ export default function WistiaEmbed({
         style={{
           height: '366px',
           width: '600px',
-        }}>
-        &nbsp;
-      </div>
+        }}></div>
     )
   }
 
