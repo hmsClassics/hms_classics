@@ -9,11 +9,13 @@ type ImgProps = {
   portrait?: boolean
 }
 
-export default function Img({ componentMediaImage, portrait }: ImgProps) {
+export default function Img(props: ImgProps) {
+  const { componentMediaImage, portrait } = props
+  const image = componentMediaImage || props
   const serializedImage =
-    componentMediaImage &&
+    image &&
     ImageSerializer.serialize({
-      image: componentMediaImage,
+      image,
       portrait,
     })
 
