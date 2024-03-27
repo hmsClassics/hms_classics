@@ -1,2 +1,9 @@
 .video {
+  [class*='content_wrapper'] > & {
+    margin-top: var(--content-section-gap);
+  }
+
+  &--portriat_orientation {
+    max-width: 500px;
+  }
 }

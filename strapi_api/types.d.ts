@@ -257,6 +257,7 @@ export type ComponentMediaImageGalleryImagesArgs = {
 export type ComponentMediaVideo = {
   __typename?: 'ComponentMediaVideo';
   id: Scalars['ID']['output'];
+  orientation: Enum_Componentmediavideo_Orientation;
   wistia_oEmbed_url?: Maybe<Scalars['String']['output']>;
 };
 
@@ -362,6 +363,11 @@ export enum Enum_Componentmediaimage_Image_Alignment {
   Left = 'left',
   Right = 'right',
   Top = 'top'
+}
+
+export enum Enum_Componentmediavideo_Orientation {
+  Landscape = 'landscape',
+  Portrait = 'portrait'
 }
 
 export enum Enum_Componentutilitycontactform_Type {
