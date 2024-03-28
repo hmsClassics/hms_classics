@@ -1,4 +1,5 @@
 .video {
+  [class*='column_two'] > &,
   [class*='content_wrapper'] > & {
     margin-top: var(--content-section-gap);
   }
