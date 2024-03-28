@@ -50,6 +50,10 @@ export async function getCar(slug: string): Promise<Car> {
               slug
               ...${queryModel}SEO
               ...${queryModel}header
+              specs {
+                label
+                value
+              }
               content {
                 ... on ComponentMediaImage {
                   ...imageAttributes
