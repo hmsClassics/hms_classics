@@ -16,7 +16,7 @@ export default function Video({
   })
 
   return (
-    <div className={videoEmbedStyles} key={`wistia_video_${id}`}>
+    <div className={videoEmbedStyles} key={`wistia_video_wrapper_${id}`}>
       {videoId !== null && (
         <WistiEmbed videoId={videoId} orientation={orientation} />
       )}

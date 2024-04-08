@@ -7,7 +7,7 @@ import Header from '@components/Header'
 import styles from '@styles/car-page.module.scss'
 import { serializedUploadFileEntityResponse } from '@utility/component_serializer'
 import { PageProps } from '@/.next/types/app/[page]/page'
-import { H4 } from '@/components/Typography/Headings'
+import CarDetails from '@/components/CarDetails'
 
 export const generateMetadata = async ({
   params,
@@ -42,18 +42,16 @@ export const generateMetadata = async ({
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const data: Car = await getCar(params.slug)
-  const pageContent = data?.content
+  const { content, specs } = data
 
   return (
     <>
       <Header {...data?.headerType} />
       <main className={styles.main}>
         <div className={styles.content_wrapper}>
-          <div className={styles.column_one}>
-            <H4>Column One</H4>
-          </div>
+          <CarDetails specs={specs} />
           <div className={styles.column_two}>
-            {pageContent && pageContent.map(renderComponent)}
+            {content?.map(renderComponent)}
           </div>
         </div>
       </main>
