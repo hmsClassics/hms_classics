@@ -1,0 +1,44 @@
+@import '@styles/mixins';
+@import '@styles/variables';
+
+.footer {
+  color: var(--color-white);
+  background: var(--color-light-grey);
+  position: relative;
+  z-index: 5;
+}
+
+.footer__content {
+  display: grid;
+  gap: var(--content-gap);
+  grid-template-areas:
+    'nav'
+    'copyright';
+  height: 13.75rem;
+  align-items: end;
+  padding: var(--content-spacing);
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+
+  nav {
+    grid-area: nav;
+  }
+
+  @include min-width($medium) {
+    height: 9.75rem;
+    grid-template-areas: 'copyright nav';
+  }
+}
+
+.copyright {
+  grid-area: copyright;
+
+  p {
+    font-size: 1.375rem;
+    margin: 0;
+
+    @include min-width($medium) {
+      font-size: 1.5rem;
+    }
+  }
+}
