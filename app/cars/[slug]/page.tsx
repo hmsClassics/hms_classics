@@ -49,7 +49,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <Header {...data?.headerType} />
       <main className={styles.main}>
         <div className={styles.content_wrapper}>
-          <CarDetails specs={specs} />
+          <div className={styles.column_one}>
+            <CarDetails specs={specs} />
+          </div>
           <div className={styles.column_two}>
             {content?.map(renderComponent)}
           </div>

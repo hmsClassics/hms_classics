@@ -16,6 +16,7 @@
   grid-template-areas:
     'one'
     'two';
+  gap: var(--content-spacing);
 
   @include min-width($medium) {
     --page-padding: 3.75rem;
@@ -36,6 +37,12 @@
 
 .column_one {
   grid-area: one;
+  padding: 0 0 var(--content-spacing);
+  border-bottom: 1px solid var(--color-border-light-grey);
+
+  @include min-width($medium) {
+    border-bottom: none;
+  }
 }
 
 .column_two {
