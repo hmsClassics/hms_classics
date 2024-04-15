@@ -1,6 +1,7 @@
 'use client'
 
-import cx from 'classnames'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import { ComponentUtilitySeo } from '@/strapi_api/types'
 import styles from './shareButton.module.scss'
 
@@ -10,10 +11,17 @@ type Props = {
 }
 
 export default function ShareButton({ seo, slug }: Props) {
+  const fallbackUrl = `${process.env.NEXT_PUBLIC_ROOT_URL}/cars/${slug}`
+  const [currentUrl, setCurrentUrl] = useState<string>(fallbackUrl)
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href)
+  }, [])
+
   const shareData = {
     title: seo.htmlTitle,
     text: seo.htmlDescription || '',
-    url: `${process.env.NEXT_PUBLIC_ROOT_URL}/cars/${slug}`,
+    url: currentUrl,
   }
 
   // share functionality via web share api, fallback to manual copy
