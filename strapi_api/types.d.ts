@@ -48,6 +48,7 @@ export type BooleanFilterInput = {
 
 export type Car = {
   __typename?: 'Car';
+  carReport?: Maybe<ComponentMediaPdfUpload>;
   content: Array<Maybe<CarContentDynamicZone>>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   headerType: ComponentLayoutHeader;
@@ -86,6 +87,7 @@ export type CarEntityResponseCollection = {
 
 export type CarFiltersInput = {
   and?: InputMaybe<Array<InputMaybe<CarFiltersInput>>>;
+  carReport?: InputMaybe<ComponentMediaPdfUploadFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
   headerType?: InputMaybe<ComponentLayoutHeaderFiltersInput>;
   id?: InputMaybe<IdFilterInput>;
@@ -99,6 +101,7 @@ export type CarFiltersInput = {
 };
 
 export type CarInput = {
+  carReport?: InputMaybe<ComponentMediaPdfUploadInput>;
   content?: InputMaybe<Array<Scalars['CarContentDynamicZoneInput']['input']>>;
   headerType?: InputMaybe<ComponentLayoutHeaderInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -252,6 +255,26 @@ export type ComponentMediaImageGalleryImagesArgs = {
   filters?: InputMaybe<UploadFileFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type ComponentMediaPdfUpload = {
+  __typename?: 'ComponentMediaPdfUpload';
+  file?: Maybe<UploadFileEntityResponse>;
+  file_name: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+};
+
+export type ComponentMediaPdfUploadFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentMediaPdfUploadFiltersInput>>>;
+  file_name?: InputMaybe<StringFilterInput>;
+  not?: InputMaybe<ComponentMediaPdfUploadFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentMediaPdfUploadFiltersInput>>>;
+};
+
+export type ComponentMediaPdfUploadInput = {
+  file?: InputMaybe<Scalars['ID']['input']>;
+  file_name?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type ComponentMediaVideo = {
@@ -460,7 +483,7 @@ export type FooterNavigationRelationResponseCollection = {
   data: Array<FooterNavigationEntity>;
 };
 
-export type GenericMorph = Car | ComponentLayoutButton | ComponentLayoutContentBlock | ComponentLayoutFeaturedContentBlock | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutHeading | ComponentLayoutImageGrid | ComponentLayoutLink | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaImageGallery | ComponentMediaVideo | ComponentUtilityContactForm | ComponentUtilityLabelValue | ComponentUtilityLayoutOptions | ComponentUtilitySeo | FooterNavigation | I18NLocale | Page | PrimaryNavigation | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = Car | ComponentLayoutButton | ComponentLayoutContentBlock | ComponentLayoutFeaturedContentBlock | ComponentLayoutFooter | ComponentLayoutHeader | ComponentLayoutHeading | ComponentLayoutImageGrid | ComponentLayoutLink | ComponentLayoutTextBlock | ComponentMediaImage | ComponentMediaImageGallery | ComponentMediaPdfUpload | ComponentMediaVideo | ComponentUtilityContactForm | ComponentUtilityLabelValue | ComponentUtilityLayoutOptions | ComponentUtilitySeo | FooterNavigation | I18NLocale | Page | PrimaryNavigation | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type I18NLocale = {
   __typename?: 'I18NLocale';
