@@ -1,0 +1,33 @@
+@import '@styles/mixins';
+@import '@styles/variables';
+
+.shareButtonWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--content-spacing);
+  margin-bottom: var(--content-spacing);
+}
+
+.shareButton {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+  font-weight: 600;
+  font-size: 2.25rem;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  text-transform: uppercase;
+  text-decoration: none;
+
+  svg {
+    transition: transform 0.2s;
+    transform: scale(0.95) translateY(-0.15em);
+  }
+
+  &:hover {
+    text-decoration: underline;
+
+    svg {
+      transform: scale(1) translateY(-0.2em);
+    }
+  }
+}
