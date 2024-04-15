@@ -1,0 +1,27 @@
+@import '@styles/mixins';
+@import '@styles/variables';
+
+.imageGallery {
+  color: var(--color-white);
+  margin: 1.5rem 0;
+
+  &__content {
+    a {
+      display: block;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
+
+.lightBoxComponent {
+  .lg-outer .lg-thumb-item {
+    &.active,
+    &:hover {
+      border-color: var(--color-bmw-blue);
+    }
+  }
+}

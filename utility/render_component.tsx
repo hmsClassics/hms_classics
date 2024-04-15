@@ -2,10 +2,11 @@ import { CarContentDynamicZone, PageContentDynamicZone } from '@strapi/types'
 import Img from '@components/Image'
 import MediaGrid from '@components/MediaGrids'
 import TextBlock from '@components/TextBlock'
-import ContactForm from '@/components/ContactForm'
-import Video from '@/components/Video'
-import ContentBlock from '@/components/ContentBlock'
-import FeaturedContentBlock from '@/components/FeaturedContentBlock'
+import ContactForm from '@components/ContactForm'
+import Video from '@components/Video'
+import ContentBlock from '@components/ContentBlock'
+import FeaturedContentBlock from '@components/FeaturedContentBlock'
+import ImageGallery from '@components/ImageGallery'
 
 type ComponentTypeMap = {
   [key: string]: React.ComponentType<any>
@@ -19,6 +20,7 @@ const COMPONENT_MAP: ComponentTypeMap = {
   ComponentLayoutContentBlock: ContentBlock,
   ComponentLayoutFeaturedContentBlock: FeaturedContentBlock,
   ComponentUtilityContactForm: ContactForm,
+  ComponentMediaImageGallery: ImageGallery,
   Error: () => <div>ERROR</div>,
 }
 
@@ -49,6 +51,8 @@ const renderComponent = (
     case 'ComponentLayoutTextBlock':
       return <Component key={componentData.id} {...componentData} />
     case 'ComponentUtilityContactForm':
+      return <Component key={componentData.id} {...componentData} />
+    case 'ComponentMediaImageGallery':
       return <Component key={componentData.id} {...componentData} />
     default:
       return <div>No Component...</div>

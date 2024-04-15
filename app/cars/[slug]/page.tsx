@@ -5,7 +5,7 @@ import { Car } from '@strapi/types'
 import renderComponent from '@utility/render_component'
 import Header from '@components/Header'
 import styles from '@styles/car-page.module.scss'
-import { serializedUploadFileEntityResponse } from '@utility/component_serializer'
+import { serializedUploadFileEntity } from '@utility/component_serializer'
 import { PageProps } from '@/.next/types/app/[page]/page'
 import CarDetails from '@components/CarDetails'
 import ShareButton from '@components/ShareButton'
@@ -15,8 +15,8 @@ export const generateMetadata = async ({
 }: PageProps): Promise<Metadata> => {
   const data: Car = await getCar(params.slug)
   const pageSeo = data.seo
-  const image_info = serializedUploadFileEntityResponse({
-    file: pageSeo?.socialImage,
+  const image_info = serializedUploadFileEntity({
+    image: pageSeo?.socialImage?.data,
   })
 
   const metadata: Metadata = {

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { PrimaryNav } from '@components/Navigation'
 import styles from './header.module.scss'
 import { ComponentLayoutHeader } from '@strapi/types'
-import { serializedUploadFileEntityResponse } from '@utility/component_serializer'
+import { serializedUploadFileEntity } from '@utility/component_serializer'
 import Image from 'next/image'
 import RasterLogo from '../icons/RasterLogo'
 
@@ -18,8 +18,8 @@ export default function Header({
   // use cloudinary to get smallest image possible
   const serializedImage =
     background &&
-    serializedUploadFileEntityResponse({
-      file: background,
+    serializedUploadFileEntity({
+      image: background?.data,
       portrait: false,
       hero: true,
     })

@@ -7,7 +7,7 @@ import { ImageSerializer } from '@utility/component_serializer'
 export default function BgImg(componentMediaImage: ComponentMediaImage) {
   const serializedImage =
     componentMediaImage &&
-    ImageSerializer.serialize({
+    ImageSerializer.serializeComponentMediaImage({
       image: componentMediaImage,
     })
 

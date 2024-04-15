@@ -20,11 +20,12 @@
     "add": "^2.0.6",
     "classnames": "^2.4.0",
     "graphql": "^16.8.1",
+    "lightgallery": "^2.7.2",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.49.3",
-    "react-responsive-masonry": "^2.1.7",
+    "react-responsive-masonry": "^2.2.0",
     "resend": "^2.1.0",
     "zod": "^3.22.4"
   },
