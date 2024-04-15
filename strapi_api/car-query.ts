@@ -17,7 +17,7 @@ const queryModel: QueryModel = 'Car'
 
 const IMAGE_GALLERY = gql`
   fragment imageGallery on ComponentMediaImageGallery {
-    images {
+    images(pagination: { start: 0, limit: 100 }) {
       data {
         id
         attributes {

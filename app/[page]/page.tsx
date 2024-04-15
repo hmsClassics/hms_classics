@@ -5,7 +5,7 @@ import { Page } from '@strapi/types'
 import renderComponent from '@utility/render_component'
 import Header from '@components/Header'
 import styles from '@styles/page.module.scss'
-import { serializedUploadFileEntityResponse } from '@utility/component_serializer'
+import { serializedUploadFileEntity } from '@utility/component_serializer'
 import { PageProps } from '@/.next/types/app/[page]/page'
 
 export const generateMetadata = async ({
@@ -13,8 +13,8 @@ export const generateMetadata = async ({
 }: PageProps): Promise<Metadata> => {
   const data: Page = await getPage(params.page)
   const pageSeo = data?.seo
-  const image_info = serializedUploadFileEntityResponse({
-    file: pageSeo?.socialImage,
+  const image_info = serializedUploadFileEntity({
+    image: pageSeo?.socialImage?.data,
   })
 
   const metadata: Metadata = {

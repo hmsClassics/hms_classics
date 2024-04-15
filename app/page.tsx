@@ -6,13 +6,13 @@ import { Page } from '@strapi/types'
 import renderComponent from '@utility/render_component'
 import Header from '@components/Header'
 import styles from '@styles/home.module.scss'
-import { serializedUploadFileEntityResponse } from '@utility/component_serializer'
+import { serializedUploadFileEntity } from '@utility/component_serializer'
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const data: Page = await getPage('home')
   const pageSeo = data?.seo
-  const image_info = serializedUploadFileEntityResponse({
-    file: pageSeo?.socialImage,
+  const image_info = serializedUploadFileEntity({
+    image: pageSeo?.socialImage?.data,
   })
 
   const metadata: Metadata = {
