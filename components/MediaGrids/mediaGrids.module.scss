@@ -9,6 +9,7 @@
   display: grid;
   gap: var(--media-grid-gap);
   width: 100%;
+  margin: var(--content-section-gap) 0;
 
   img {
     display: block;
