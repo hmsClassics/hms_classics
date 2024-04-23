@@ -1,7 +1,7 @@
 .video {
   [class*='column_two'] > &,
   [class*='content_wrapper'] > & {
-    margin-top: var(--content-section-gap);
+    margin: var(--content-section-gap) 0;
   }
 
   &--portriat_orientation {
