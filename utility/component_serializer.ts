@@ -33,24 +33,41 @@ function cloudinary() {
   })
 }
 
-function processImage(
-  provider_metadata: any,
-  portrait?: boolean,
-  hero?: boolean,
+type ProcessImageProps = {
+  provider_metadata: any
+  portrait?: boolean
+  hero?: boolean
   thumbnail?: boolean
-): string {
+  width?: number | null
+  height?: number | null
+}
+
+function processedImageURL({
+  provider_metadata,
+  portrait,
+  hero,
+  thumbnail,
+  width,
+  height,
+}: ProcessImageProps): string {
   const cld = cloudinary()
   const cloudImage = cld.image(provider_metadata.public_id)
   cloudImage.delivery(Delivery.format('auto'))
+  let aspectRatio = 0
 
-  if (hero) {
-    cloudImage.resize(fill().width(1920).height(1080).gravity(autoGravity()))
-  } else if (portrait) {
-    cloudImage.resize(fill().width(800).height(1080).gravity(autoGravity()))
-  } else if (thumbnail) {
+  if (width && height) {
+    aspectRatio = width / height
+    portrait = !portrait && aspectRatio < 1
+  }
+
+  if (thumbnail) {
     cloudImage.resize(
       fill().width(THUMB_WIDTH).height(THUMB_HEIGHT).gravity(autoGravity())
     )
+  } else if (hero) {
+    cloudImage.resize(fill().width(1920).height(1080).gravity(autoGravity()))
+  } else if (portrait) {
+    cloudImage.resize(fill().width(800).height(1080).gravity(autoGravity()))
   } else {
     cloudImage.resize(fill().height(1080).width(1600).gravity(autoGravity()))
   }
@@ -78,7 +95,14 @@ export function serializedUploadFileEntity({
 
   if (provider_metadata) {
     imageURL = provider_metadata
-      ? processImage(provider_metadata, portrait, hero, thumbnail)
+      ? processedImageURL({
+          provider_metadata,
+          portrait,
+          hero,
+          thumbnail,
+          width: file_attributes?.width,
+          height: file_attributes?.height,
+        })
       : file_attributes?.url ?? ''
   } else {
     imageURL = file_attributes?.url ?? ''
