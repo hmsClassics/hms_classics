@@ -17,6 +17,7 @@ export async function PrimaryNav({ hero }: PrimaryNavProps) {
   const links = data?.links
   const navStyles = cx(styles.nav, styles.nav__primary, {
     [styles['nav--hero']]: hero,
+    [styles['nav--regular']]: !hero,
   })
 
   return (
