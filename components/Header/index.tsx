@@ -13,7 +13,9 @@ export default function Header({
   background,
   type,
 }: ComponentLayoutHeader) {
-  const hero = type === 'hero_1'
+  const hero = type === 'full'
+  const constrained = type === 'constrained'
+  console.log('constrained 🦠', constrained)
 
   // use cloudinary to get smallest image possible
   const serializedImage =
@@ -27,6 +29,7 @@ export default function Header({
   const headerStyles = cx(styles.header, {
     [styles['header--hero']]: hero,
     [styles['header--regular']]: !hero,
+    [styles['header--constrained']]: constrained,
     [styles.hero]: hero,
   })
 
@@ -42,6 +45,20 @@ export default function Header({
         <PrimaryNav hero={hero} />
       </div>
 
+      {constrained && (
+        <div className={styles.header__constrained_image}>
+          <Image
+            src={serializedImage?.url || '/images/home-header-bg.webp'}
+            alt={serializedImage?.alt_text || 'home header background'}
+            width={serializedImage?.width}
+            height={serializedImage?.height}
+            className={styles.hero__background__image}
+            priority
+          />
+        </div>
+      )}
+
+      {/* TODO: make this a separate component */}
       {hero && (
         <>
           <div className={styles.hero__background}>

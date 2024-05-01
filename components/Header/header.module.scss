@@ -7,6 +7,10 @@
 
   height: var(--header-height);
 
+  &--constrained {
+    height: auto;
+  }
+
   &--hero {
     position: relative;
     height: var(--hero-height);
@@ -31,6 +35,13 @@
     }
   }
 
+  &__constrained_image {
+    max-width: calc(var(--max-content-width) - (var(--content-spacing) * 2));
+    width: calc(100% - (var(--content-spacing) * 2));
+    margin: 0 auto;
+    background-color: var(--color-bmw-blue);
+  }
+
   &__content {
     position: relative;
     display: flex;
@@ -50,6 +61,8 @@
 
       img {
         height: 100%;
+        max-height: 1.11922997em;
+        min-height: 1.11627907em;
         width: auto;
       }
     }
