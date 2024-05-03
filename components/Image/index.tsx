@@ -4,13 +4,19 @@ import styles from './image.module.scss'
 import { ComponentMediaImage } from '@strapi/types'
 import { serializedUploadFileEntity } from '@utility/component_serializer'
 
-type ImgProps = {
-  componentMediaImage: ComponentMediaImage
-  portrait?: boolean
-}
+type ImgProps =
+  | {
+      componentMediaImage: ComponentMediaImage
+      portrait?: boolean
+    }
+  | ComponentMediaImage
 
-export default function Img({ componentMediaImage, portrait }: ImgProps) {
-  const image = componentMediaImage.file?.data
+export default function Img(props: ImgProps) {
+  const image =
+    'componentMediaImage' in props
+      ? props.componentMediaImage.file?.data
+      : props.file?.data
+  const portrait = 'componentMediaImage' in props ? props.portrait : false
   const serializedImage = serializedUploadFileEntity({
     image,
     portrait,
