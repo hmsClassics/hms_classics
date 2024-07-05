@@ -44,6 +44,8 @@
     rgba(3, 102, 177, 1) 0%,
     rgba(62, 114, 236, 1) 100%
   );
+
+  --theme-color: var(--color-bmw-blue);
 }
 
 @include min-width($medium) {

@@ -5,6 +5,7 @@ import styles from './carDetails.module.scss'
 
 type Props = {
   specs: Maybe<ComponentUtilityLabelValue>[]
+  themeColor?: Maybe<string> | undefined
 }
 
 const heveticaNueuCondensedBold = localFont({
@@ -12,9 +13,12 @@ const heveticaNueuCondensedBold = localFont({
   variable: '--font-helvetica-neue-condensed-bold',
 })
 
-export default function CarDetails({ specs }: Props) {
+export default function CarDetails({ specs, themeColor }: Props) {
+  const featured_color = themeColor || '#fff'
   return (
-    <div className={styles.carDetails}>
+    <div
+      className={styles.carDetails}
+      style={{ '--theme-color': featured_color } as React.CSSProperties}>
       {specs?.map((spec) => {
         if (!spec) return null
 

@@ -29,7 +29,7 @@
     font-size: clamp(1.55rem, 6vw, 3.75rem);
     line-height: 1.2;
     margin-bottom: 0;
-    color: var(--color-bmw-blue);
+    color: var(--theme-color);
     letter-spacing: 0.05em;
 
     @include min-width($medium) {

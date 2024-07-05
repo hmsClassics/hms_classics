@@ -43,7 +43,7 @@ export const generateMetadata = async ({
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const data: Car = await getCar(params.slug)
-  const { content, specs, seo } = data
+  const { content, specs, seo, themeColor } = data
 
   return (
     <>
@@ -51,7 +51,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <main className={styles.main}>
         <div className={styles.content_wrapper}>
           <div className={styles.column_one}>
-            <CarDetails specs={specs} />
+            <CarDetails specs={specs} themeColor={themeColor} />
             <ShareButton seo={seo} slug={params.slug} />
           </div>
           <div className={styles.column_two}>

@@ -54,6 +54,7 @@ export async function getCar(slug: string): Promise<Car> {
                 label
                 value
               }
+              themeColor
               content {
                 ... on ComponentMediaImage {
                   ...imageAttributes
